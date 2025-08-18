@@ -39,7 +39,7 @@ export async function submitContactForm(prevState: any, formData: FormData) {
 
   const msg = {
     to: "kavindusachinthe@outlook.com", 
-    from: "no-reply@kodegas.com", // This needs to be a verified sender in SendGrid
+    from: "kavindusachinthe@outlook.com", // This needs to be a verified sender in SendGrid
     subject: `New Contact Form Submission: ${subject}`,
     html: `
       <p>You have a new contact form submission:</p>
