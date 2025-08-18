@@ -1,6 +1,6 @@
 'use client';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
+import AboutScene from '@/components/three/about-scene';
 
 export default function AboutSection() {
   const variants = {
@@ -20,15 +20,8 @@ export default function AboutSection() {
           }}
           className="grid md:grid-cols-2 gap-16 items-center"
         >
-          <motion.div variants={variants}>
-            <Image
-              src="https://placehold.co/800x600/1e1b4b/f2f2f2"
-              alt="KODEGAS Team"
-              width={800}
-              height={600}
-              className="rounded-lg shadow-2xl"
-              data-ai-hint="team workspace"
-            />
+          <motion.div variants={variants} className="h-[400px] md:h-[500px] w-full">
+            <AboutScene />
           </motion.div>
           <motion.div 
             variants={variants}
