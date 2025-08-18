@@ -10,17 +10,17 @@ export default function HeroSection() {
       <div className="absolute inset-0">
         <Scene />
       </div>
-      <div className="absolute inset-0 bg-black/70" />
+      <div className="absolute inset-0 bg-black/60" />
       <motion.div 
-        className="relative z-10 text-center text-primary-foreground p-4"
+        className="relative z-10 text-center text-white p-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter drop-shadow-md">
+        <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter drop-shadow-lg">
           KODEGAS
         </h1>
-        <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-primary-foreground/80 drop-shadow-sm">
+        <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90 drop-shadow-md">
           Innovating the Future with AI, ML, IoT & Beyond.
         </p>
         <div className="mt-8 flex justify-center gap-4">
@@ -38,7 +38,7 @@ export default function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
       >
-        <ArrowDown className="h-8 w-8 text-primary-foreground/50" />
+        <ArrowDown className="h-8 w-8 text-white/50" />
       </motion.div>
     </section>
   );
