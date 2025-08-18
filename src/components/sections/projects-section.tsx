@@ -33,7 +33,7 @@ const projects = [
   {
     title: "WeGuard",
     category: "AI / Ag-Tech",
-    image: "https://placehold.co/600x400/4ade80/1e1b4b",
+    image: "https://res.cloudinary.com/du5tkpcut/image/upload/v1755515595/Screenshot_2025-08-18_at_4.42.50_PM_ek5hl8.png",
     description: "An AI-driven crop health guardian designed to detect plant diseases early, providing expert advice and organic solutions to protect crops.",
     longDescription: `
       <div class="text-left text-base text-muted-foreground pt-4">
