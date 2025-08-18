@@ -1,8 +1,8 @@
 "use client";
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState, useEffect } from 'react';
+import { useFormStatus } from 'react-dom';
 import { submitContactForm } from "@/app/actions";
-import { useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
@@ -20,7 +20,7 @@ function SubmitButton() {
 }
 
 export default function ContactSection() {
-  const [state, formAction] = useFormState(submitContactForm, null);
+  const [state, formAction] = useActionState(submitContactForm, null);
   const { toast } = useToast();
 
   useEffect(() => {
