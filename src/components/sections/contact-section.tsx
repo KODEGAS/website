@@ -74,7 +74,7 @@ export default function ContactSection() {
               <div className="space-y-4 text-muted-foreground">
                 <div className="flex items-start gap-4">
                   <MapPin className="w-6 h-6 text-primary mt-1"/>
-                  <span>FOS, UOK, Sri Lanka</span>
+                  <span>Faculty of Science, University of Kelaniya, Sri Lanka</span>
                 </div>
                 <div className="flex items-center gap-4">
                   <Mail className="w-6 h-6 text-primary"/>
