@@ -23,18 +23,19 @@ export default function Scene() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     currentMount.appendChild(renderer.domElement);
 
-    // Main Object (TorusKnot)
-    const geometry = new THREE.TorusKnotGeometry(1.2, 0.35, 100, 16);
-    const material = new THREE.MeshStandardMaterial({
-      color: 0xcc66ff, // Brighter purple
-      metalness: 0.8,
-      roughness: 0.1,
-      emissive: 0x330033, // Increased emissiveness for a glow effect
+    // Main Object (TorusKnot as Particles)
+    const geometry = new THREE.TorusKnotGeometry(1.2, 0.35, 200, 32);
+    const particlesMaterial = new THREE.PointsMaterial({
+        color: 0xcc66ff, // Brighter purple
+        size: 0.015,
+        blending: THREE.AdditiveBlending,
+        transparent: true,
+        sizeAttenuation: true,
     });
-    const torusKnot = new THREE.Mesh(geometry, material);
-    scene.add(torusKnot);
+    const torusKnotParticles = new THREE.Points(geometry, particlesMaterial);
+    scene.add(torusKnotParticles);
     
-    // Lights
+    // Lights (Still useful for starfield and potential future solid objects)
     const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     scene.add(ambientLight);
 
@@ -54,13 +55,13 @@ export default function Scene() {
     }
     const particlesGeometry = new THREE.BufferGeometry();
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const particlesMaterial = new THREE.PointsMaterial({
+    const starfieldMaterial = new THREE.PointsMaterial({
       size: 0.02,
       color: 0xffffff,
       transparent: true,
       opacity: 0.7,
     });
-    const starfield = new THREE.Points(particlesGeometry, particlesMaterial);
+    const starfield = new THREE.Points(particlesGeometry, starfieldMaterial);
     scene.add(starfield);
 
     // Mouse tracking
@@ -90,14 +91,13 @@ export default function Scene() {
       requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
-      // Animate Torus Knot
-      torusKnot.rotation.x += 0.001;
-      torusKnot.rotation.y += 0.002;
-      torusKnot.scale.set(
-        Math.sin(elapsedTime * 0.5) * 0.1 + 1,
-        Math.sin(elapsedTime * 0.5) * 0.1 + 1,
-        Math.sin(elapsedTime * 0.5) * 0.1 + 1,
-      );
+      // Animate Torus Knot Particles
+      torusKnotParticles.rotation.x += 0.001;
+      torusKnotParticles.rotation.y += 0.002;
+      
+      // Add a subtle pulsing effect to the particles
+      const scale = Math.sin(elapsedTime * 0.5) * 0.1 + 1;
+      particlesMaterial.size = 0.015 * scale;
 
 
       // Animate Stars
@@ -120,6 +120,10 @@ export default function Scene() {
       if (currentMount) {
         currentMount.removeChild(renderer.domElement);
       }
+      geometry.dispose();
+      particlesMaterial.dispose();
+      particlesGeometry.dispose();
+      starfieldMaterial.dispose();
     };
   }, []);
 
