@@ -10,7 +10,7 @@ export default function HeroSection() {
       <div className="absolute inset-0">
         <Scene />
       </div>
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/70" />
       <motion.div 
         className="relative z-10 text-center text-primary-foreground p-4"
         initial={{ opacity: 0, y: 20 }}
