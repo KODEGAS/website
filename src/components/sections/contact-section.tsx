@@ -78,7 +78,7 @@ export default function ContactSection() {
                 </div>
                 <div className="flex items-center gap-4">
                   <Mail className="w-6 h-6 text-primary"/>
-                  <span>contact@kodegas.com</span>
+                  <span>kavindusachinthe@outlook.com</span>
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="w-6 h-6 text-primary"/>
