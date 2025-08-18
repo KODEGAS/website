@@ -36,22 +36,24 @@ const projects = [
     image: "https://placehold.co/600x400/4ade80/1e1b4b",
     description: "An AI-driven crop health guardian designed to detect plant diseases early, providing expert advice and organic solutions to protect crops.",
     longDescription: `
-      <p class="mb-4">“WeGuard” is an AI-driven crop health guardian. Think of it as a smart watchdog for your farm, designed to sniff out trouble before your plants start dropping hints—or leaves. With the tagline "Protect Your Crops with AI", it provides a robust suite of tools for modern farmers.</p>
-      <h4 class="font-semibold text-lg mb-2 text-foreground">Core Services & Features:</h4>
-      <ul class="list-disc list-inside mb-4 space-y-1 text-muted-foreground">
-        <li><strong>AI Disease Detection:</strong> Snap a photo, let the AI pinpoint what’s wrong.</li>
-        <li><strong>Expert Advice:</strong> Algorithm meets agri-know-how.</li>
-        <li><strong>Organic Solutions:</strong> Trust in nature, backed by tech.</li>
-        <li><strong>Impact:</strong> 10+ diseases detected, 150+ farmers helped, 90% accuracy rate.</li>
-        <li><strong>24/7 Expert Support:</strong> Because plant problems don’t watch the clock.</li>
-      </ul>
-      <h4 class="font-semibold text-lg mb-2 text-foreground">Interactive Tools:</h4>
-      <ul class="list-disc list-inside space-y-1 text-muted-foreground">
-        <li><strong>Scan Your Crop:</strong> Upload a picture to get on-the-spot diagnosis and treatment tips.</li>
-        <li><strong>Disease Database:</strong> Dive into what’s afflicting your crops and how to fix it.</li>
-        <li><strong>Farmer Tips:</strong> Seasonal advice and weather alerts.</li>
-        <li><strong>Live Farming Conditions:</strong> Real-time data for localized context.</li>
-      </ul>
+      <div class="text-left text-base text-muted-foreground pt-4">
+        <p class="mb-4">“WeGuard” is an AI-driven crop health guardian. Think of it as a smart watchdog for your farm, designed to sniff out trouble before your plants start dropping hints—or leaves. With the tagline "Protect Your Crops with AI", it provides a robust suite of tools for modern farmers.</p>
+        <h4 class="font-semibold text-lg mb-2 text-foreground">Core Services & Features:</h4>
+        <ul class="list-disc list-inside mb-4 space-y-1">
+          <li><strong>AI Disease Detection:</strong> Snap a photo, let the AI pinpoint what’s wrong.</li>
+          <li><strong>Expert Advice:</strong> Algorithm meets agri-know-how.</li>
+          <li><strong>Organic Solutions:</strong> Trust in nature, backed by tech.</li>
+          <li><strong>Impact:</strong> 10+ diseases detected, 150+ farmers helped, 90% accuracy rate.</li>
+          <li><strong>24/7 Expert Support:</strong> Because plant problems don’t watch the clock.</li>
+        </ul>
+        <h4 class="font-semibold text-lg mb-2 text-foreground">Interactive Tools:</h4>
+        <ul class="list-disc list-inside space-y-1">
+          <li><strong>Scan Your Crop:</strong> Upload a picture to get on-the-spot diagnosis and treatment tips.</li>
+          <li><strong>Disease Database:</strong> Dive into what’s afflicting your crops and how to fix it.</li>
+          <li><strong>Farmer Tips:</strong> Seasonal advice and weather alerts.</li>
+          <li><strong>Live Farming Conditions:</strong> Real-time data for localized context.</li>
+        </ul>
+      </div>
     `,
     tags: ["AI", "Ag-Tech", "React", "Python"],
     aiHint: "healthy crops"
@@ -122,13 +124,13 @@ export default function ProjectsSection() {
                   <div className="flex flex-wrap gap-2 pt-2">
                     {project.tags.map(tag => <Badge key={tag} variant="secondary">{tag}</Badge>)}
                   </div>
-                  <DialogDescription className="pt-4 text-base text-left">
                     {project.longDescription ? (
-                      <div dangerouslySetInnerHTML={{ __html: project.longDescription }} />
+                      <div className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: project.longDescription }} />
                     ) : (
-                      project.description
+                      <DialogDescription className="pt-4 text-base text-left">
+                        {project.description}
+                      </DialogDescription>
                     )}
-                  </DialogDescription>
                 </DialogHeader>
               </DialogContent>
             </Dialog>
