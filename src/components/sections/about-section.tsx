@@ -9,7 +9,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="py-24 sm:py-32">
+    <section id="about" className="py-24 sm:py-32 bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial="hidden"

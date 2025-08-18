@@ -47,7 +47,7 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="py-24 sm:py-32">
+    <section id="projects" className="py-24 sm:py-32 bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

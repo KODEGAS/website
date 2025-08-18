@@ -1,15 +1,11 @@
 'use client';
 import { Button } from "@/components/ui/button";
-import Scene from "@/components/three/scene";
 import { ArrowDown } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative w-full h-dvh overflow-hidden flex items-center justify-center">
-      <div className="absolute inset-0">
-        <Scene />
-      </div>
+    <section id="home" className="relative w-full h-dvh flex items-center justify-center">
       <div className="absolute inset-0 bg-black/60" />
       <motion.div 
         className="relative z-10 text-center text-white p-4"
