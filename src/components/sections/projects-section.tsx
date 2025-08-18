@@ -11,26 +11,22 @@ const projects = [
     category: "AI / Ag-Tech",
     image: "https://res.cloudinary.com/du5tkpcut/image/upload/v1755515595/Screenshot_2025-08-18_at_4.42.50_PM_ek5hl8.png",
     description: "An AI-driven crop health guardian designed to detect plant diseases early, providing expert advice and organic solutions to protect crops.",
-    longDescription: `
-      <div class="text-left text-base text-muted-foreground pt-4">
-        <p class="mb-4">“WeGuard” is an AI-driven crop health guardian. Think of it as a smart watchdog for your farm, designed to sniff out trouble before your plants start dropping hints—or leaves. With the tagline "Protect Your Crops with AI", it provides a robust suite of tools for modern farmers.</p>
-        <h4 class="font-semibold text-lg mb-2 text-foreground">Core Services & Features:</h4>
-        <ul class="list-disc list-inside mb-4 space-y-1">
-          <li><strong>AI Disease Detection:</strong> Snap a photo, let the AI pinpoint what’s wrong.</li>
-          <li><strong>Expert Advice:</strong> Algorithm meets agri-know-how.</li>
-          <li><strong>Organic Solutions:</strong> Trust in nature, backed by tech.</li>
-          <li><strong>Impact:</strong> 10+ diseases detected, 150+ farmers helped, 90% accuracy rate.</li>
-          <li><strong>24/7 Expert Support:</strong> Because plant problems don’t watch the clock.</li>
-        </ul>
-        <h4 class="font-semibold text-lg mb-2 text-foreground">Interactive Tools:</h4>
-        <ul class="list-disc list-inside space-y-1">
-          <li><strong>Scan Your Crop:</strong> Upload a picture to get on-the-spot diagnosis and treatment tips.</li>
-          <li><strong>Disease Database:</strong> Dive into what’s afflicting your crops and how to fix it.</li>
-          <li><strong>Farmer Tips:</strong> Seasonal advice and weather alerts.</li>
-          <li><strong>Live Farming Conditions:</strong> Real-time data for localized context.</li>
-        </ul>
-      </div>
-    `,
+    longDescription: {
+      intro: "“WeGuard” is an AI-driven crop health guardian. Think of it as a smart watchdog for your farm, designed to sniff out trouble before your plants start dropping hints—or leaves. With the tagline \"Protect Your Crops with AI\", it provides a robust suite of tools for modern farmers.",
+      features: [
+        "AI Disease Detection: Snap a photo, let the AI pinpoint what’s wrong.",
+        "Expert Advice: Algorithm meets agri-know-how.",
+        "Organic Solutions: Trust in nature, backed by tech.",
+        "Impact: 10+ diseases detected, 150+ farmers helped, 90% accuracy rate.",
+        "24/7 Expert Support: Because plant problems don’t watch the clock."
+      ],
+      tools: [
+        "Scan Your Crop: Upload a picture to get on-the-spot diagnosis and treatment tips.",
+        "Disease Database: Dive into what’s afflicting your crops and how to fix it.",
+        "Farmer Tips: Seasonal advice and weather alerts.",
+        "Live Farming Conditions: Real-time data for localized context."
+      ]
+    },
     tags: ["AI", "Ag-Tech", "React", "Python"],
     aiHint: "healthy crops"
   },
@@ -100,13 +96,23 @@ export default function ProjectsSection() {
                   <div className="flex flex-wrap gap-2 pt-2">
                     {project.tags.map(tag => <Badge key={tag} variant="secondary">{tag}</Badge>)}
                   </div>
-                    {project.longDescription ? (
-                      <div className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: project.longDescription }} />
-                    ) : (
-                      <DialogDescription className="pt-4 text-base text-left">
-                        {project.description}
-                      </DialogDescription>
-                    )}
+                    <DialogDescription asChild>
+                       <div className="text-left text-base text-muted-foreground pt-4 space-y-4">
+                        <p>{project.longDescription.intro}</p>
+                        <div>
+                          <h4 className="font-semibold text-lg mb-2 text-foreground">Core Services & Features:</h4>
+                          <ul className="list-disc list-inside space-y-1">
+                            {project.longDescription.features.map((feature, i) => <li key={i}>{feature}</li>)}
+                          </ul>
+                        </div>
+                        <div>
+                           <h4 className="font-semibold text-lg mb-2 text-foreground">Interactive Tools:</h4>
+                           <ul className="list-disc list-inside space-y-1">
+                            {project.longDescription.tools.map((tool, i) => <li key={i}>{tool}</li>)}
+                          </ul>
+                        </div>
+                      </div>
+                    </DialogDescription>
                 </DialogHeader>
               </DialogContent>
             </Dialog>

@@ -21,13 +21,13 @@ export default function Footer() {
           <div className="grid gap-4">
             <h4 className="font-headline font-semibold text-foreground">Connect</h4>
             <div className="flex gap-4">
-              <Link href="#" aria-label="Twitter">
+              <Link href="#" aria-label="Visit our Twitter page">
                 <Twitter className="h-6 w-6 hover:text-foreground" />
               </Link>
-              <Link href="#" aria-label="LinkedIn">
+              <Link href="#" aria-label="Visit our LinkedIn page">
                 <Linkedin className="h-6 w-6 hover:text-foreground" />
               </Link>
-              <Link href="#" aria-label="GitHub">
+              <Link href="#" aria-label="Visit our GitHub page">
                 <Github className="h-6 w-6 hover:text-foreground" />
               </Link>
             </div>

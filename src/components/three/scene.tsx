@@ -24,7 +24,7 @@ export default function Scene() {
     currentMount.appendChild(renderer.domElement);
 
     // Main Object (TorusKnot)
-    const geometry = new THREE.TorusKnotGeometry(1.2, 0.35, 128, 16);
+    const geometry = new THREE.TorusKnotGeometry(1.2, 0.35, 100, 16);
     const material = new THREE.MeshStandardMaterial({
       color: 0xcc66ff, // Brighter purple
       metalness: 0.8,
@@ -47,7 +47,7 @@ export default function Scene() {
     scene.add(pointLight2);
 
     // Particle System (Stars)
-    const particlesCount = 2000;
+    const particlesCount = 500;
     const positions = new Float32Array(particlesCount * 3);
     for (let i = 0; i < particlesCount * 3; i++) {
       positions[i] = (Math.random() - 0.5) * 20;
