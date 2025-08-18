@@ -38,13 +38,22 @@ const services = [
 
 export default function ServicesSection() {
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 50, scale: 0.8, rotateX: -45 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      rotateX: 0,
+      transition: { 
+        duration: 0.7,
+        ease: [0.6, 0.05, -0.01, 0.9]
+      } 
+    },
   };
 
   return (
     <section id="services" className="py-24 sm:py-32 bg-muted">
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6 [perspective:1000px]">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -61,7 +70,7 @@ export default function ServicesSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={{
-            visible: { transition: { staggerChildren: 0.1 } }
+            visible: { transition: { staggerChildren: 0.15 } }
           }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
