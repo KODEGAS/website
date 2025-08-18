@@ -74,7 +74,7 @@ export default function ContactSection() {
               <div className="space-y-4 text-muted-foreground">
                 <div className="flex items-start gap-4">
                   <MapPin className="w-6 h-6 text-primary mt-1"/>
-                  <span>123 Innovation Drive, Tech City, 94105</span>
+                  <span>FOS, UOK, Sri Lanka</span>
                 </div>
                 <div className="flex items-center gap-4">
                   <Mail className="w-6 h-6 text-primary"/>
@@ -82,14 +82,14 @@ export default function ContactSection() {
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="w-6 h-6 text-primary"/>
-                  <span>+1 (234) 567-890</span>
+                  <span>+94726677555</span>
                 </div>
               </div>
             </div>
             
             <div className="w-full h-64 md:flex-1 rounded-lg overflow-hidden">
                <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.284799980843!2d-122.4019409846817!3d37.78369697975811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c1e48b185%3A0x69b1f3c3b4a2c1de!2sSalesforce%20Tower!5e0!3m2!1sen!2sus!4v1626966846937!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.203923444007!2d79.91300931530946!3d6.974513094958318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2570410795493%3A0x296763f00a5f6b7!2sFaculty%20of%20Science%2C%20University%20of%20Kelaniya!5e0!3m2!1sen!2slk!4v1755515595000!5m2!1sen!2slk"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
