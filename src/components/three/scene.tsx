@@ -20,7 +20,7 @@ export default function Scene() {
     // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     currentMount.appendChild(renderer.domElement);
 
     // Main Object (TorusKnot)
@@ -47,7 +47,7 @@ export default function Scene() {
     scene.add(pointLight2);
 
     // Particle System (Stars)
-    const particlesCount = 5000;
+    const particlesCount = 2000;
     const positions = new Float32Array(particlesCount * 3);
     for (let i = 0; i < particlesCount * 3; i++) {
       positions[i] = (Math.random() - 0.5) * 20;
@@ -78,6 +78,7 @@ export default function Scene() {
         camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       }
     };
     window.addEventListener('resize', handleResize);

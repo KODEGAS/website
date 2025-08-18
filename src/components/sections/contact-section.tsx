@@ -67,22 +67,7 @@ export default function ContactSection() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={variants}
-          >
-            <form action={formAction} className="space-y-4">
-              <Input name="name" placeholder="Your Name" required />
-              <Input name="email" type="email" placeholder="Your Email" required />
-              <Input name="subject" placeholder="Subject" required />
-              <Textarea name="message" placeholder="Your Message" rows={5} required />
-              <SubmitButton />
-            </form>
-          </motion.div>
-          
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={variants}
-            className="space-y-8"
+            className="space-y-8 order-2 md:order-1"
           >
              <div>
               <h3 className="font-headline text-2xl font-semibold mb-4">Contact Information</h3>
@@ -113,6 +98,21 @@ export default function ContactSection() {
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={variants}
+            className="order-1 md:order-2"
+          >
+            <form action={formAction} className="space-y-4">
+              <Input name="name" placeholder="Your Name" required />
+              <Input name="email" type="email" placeholder="Your Email" required />
+              <Input name="subject" placeholder="Subject" required />
+              <Textarea name="message" placeholder="Your Message" rows={5} required />
+              <SubmitButton />
+            </form>
           </motion.div>
         </div>
       </div>
