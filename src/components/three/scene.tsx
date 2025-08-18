@@ -26,10 +26,10 @@ export default function Scene() {
     // Main Object (TorusKnot)
     const geometry = new THREE.TorusKnotGeometry(1.2, 0.35, 128, 16);
     const material = new THREE.MeshStandardMaterial({
-      color: 0x800080, // Primary color: purple
+      color: 0xcc66ff, // Brighter purple
       metalness: 0.8,
       roughness: 0.1,
-      emissive: 0x100810,
+      emissive: 0x330033, // Increased emissiveness for a glow effect
     });
     const torusKnot = new THREE.Mesh(geometry, material);
     scene.add(torusKnot);
@@ -38,11 +38,11 @@ export default function Scene() {
     const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0x7DF9FF, 50, 100); // Accent color
+    const pointLight = new THREE.PointLight(0x7DF9FF, 150, 100); // Accent color, increased intensity
     pointLight.position.set(5, 5, 5);
     scene.add(pointLight);
 
-    const pointLight2 = new THREE.PointLight(0xffffff, 30, 100);
+    const pointLight2 = new THREE.PointLight(0xffffff, 50, 100); // Increased intensity
     pointLight2.position.set(-5, -5, -5);
     scene.add(pointLight2);
 
