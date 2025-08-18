@@ -67,13 +67,13 @@ export default function ContactSection() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={variants}
-            className="space-y-8 order-2 md:order-1"
+            className="flex flex-col gap-8 order-2 md:order-1"
           >
              <div>
               <h3 className="font-headline text-2xl font-semibold mb-4">Contact Information</h3>
               <div className="space-y-4 text-muted-foreground">
-                <div className="flex items-center gap-4">
-                  <MapPin className="w-6 h-6 text-primary"/>
+                <div className="flex items-start gap-4">
+                  <MapPin className="w-6 h-6 text-primary mt-1"/>
                   <span>123 Innovation Drive, Tech City, 94105</span>
                 </div>
                 <div className="flex items-center gap-4">
@@ -87,7 +87,7 @@ export default function ContactSection() {
               </div>
             </div>
             
-            <div className="h-64 md:h-full w-full rounded-lg overflow-hidden">
+            <div className="w-full h-64 md:flex-1 rounded-lg overflow-hidden">
                <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.284799980843!2d-122.4019409846817!3d37.78369697975811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c1e48b185%3A0x69b1f3c3b4a2c1de!2sSalesforce%20Tower!5e0!3m2!1sen!2sus!4v1626966846937!5m2!1sen!2sus"
                 width="100%"
