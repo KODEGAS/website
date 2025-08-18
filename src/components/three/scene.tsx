@@ -35,14 +35,14 @@ export default function Scene() {
     scene.add(torusKnot);
     
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0x7DF9FF, 20, 100); // Accent color
+    const pointLight = new THREE.PointLight(0x7DF9FF, 50, 100); // Accent color
     pointLight.position.set(5, 5, 5);
     scene.add(pointLight);
 
-    const pointLight2 = new THREE.PointLight(0xffffff, 10, 100);
+    const pointLight2 = new THREE.PointLight(0xffffff, 30, 100);
     pointLight2.position.set(-5, -5, -5);
     scene.add(pointLight2);
 
