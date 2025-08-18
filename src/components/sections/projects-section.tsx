@@ -7,30 +7,6 @@ import { motion } from 'framer-motion';
 
 const projects = [
   {
-    title: "Project Alpha",
-    category: "AI / ML",
-    image: "https://placehold.co/600x400/800080/f2f2f2",
-    description: "An advanced AI-powered analytics platform that provides real-time insights for financial markets. Built with a custom neural network architecture.",
-    tags: ["AI", "Python", "TensorFlow"],
-    aiHint: "abstract data"
-  },
-  {
-    title: "Project Beta",
-    category: "IoT",
-    image: "https://placehold.co/600x400/7df9ff/1e1b4b",
-    description: "A smart home automation system connecting various IoT devices for seamless control and energy efficiency. Features a central dashboard and mobile app.",
-    tags: ["IoT", "React Native", "MQTT"],
-    aiHint: "smart home"
-  },
-  {
-    title: "Project Gamma",
-    category: "Web App",
-    image: "https://placehold.co/600x400/1e1b4b/f2f2f2",
-    description: "A large-scale e-commerce platform with a custom recommendation engine, handling thousands of transactions per minute.",
-    tags: ["Next.js", "PostgreSQL", "Stripe"],
-    aiHint: "modern website"
-  },
-  {
     title: "WeGuard",
     category: "AI / Ag-Tech",
     image: "https://res.cloudinary.com/du5tkpcut/image/upload/v1755515595/Screenshot_2025-08-18_at_4.42.50_PM_ek5hl8.png",
@@ -77,10 +53,10 @@ export default function ProjectsSection() {
           className="text-center space-y-4 mb-16"
         >
           <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">Our Work</h2>
-          <p className="max-w-2xl mx-auto text-lg text-muted-foreground">We take pride in our work. Here are some of our recent projects.</p>
+          <p className="max-w-2xl mx-auto text-lg text-muted-foreground">We take pride in our work. Here is our flagship project.</p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-8">
+        <div className="grid justify-center gap-8">
           {projects.map((project, index) => (
             <Dialog key={index}>
               <DialogTrigger asChild>
@@ -90,7 +66,7 @@ export default function ProjectsSection() {
                   viewport={{ once: true, amount: 0.5 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   variants={cardVariants}
-                  className="cursor-pointer"
+                  className="cursor-pointer max-w-lg"
                 >
                   <Card className="overflow-hidden group h-full">
                     <div className="overflow-hidden">
