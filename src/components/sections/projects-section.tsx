@@ -2,8 +2,9 @@
 import Image from 'next/image';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from '@/components/ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { motion } from 'framer-motion';
+import { Button } from '../ui/button';
 
 const projects = [
   {
@@ -114,6 +115,11 @@ export default function ProjectsSection() {
                       </div>
                     </DialogDescription>
                 </DialogHeader>
+                <DialogFooter className="pt-4">
+                  <Button asChild>
+                    <a href="https://weguard.kodegas.com" target="_blank" rel="noopener noreferrer">Visit Site</a>
+                  </Button>
+                </DialogFooter>
               </DialogContent>
             </Dialog>
           ))}
