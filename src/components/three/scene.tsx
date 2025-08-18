@@ -72,6 +72,16 @@ export default function Scene() {
     };
     window.addEventListener('mousemove', handleMouseMove);
 
+    // Keyboard tracking
+    const keyboardState: { [key: string]: boolean } = {};
+    const handleKeyDown = (event: KeyboardEvent) => {
+      keyboardState[event.key] = true;
+    };
+    const handleKeyUp = (event: KeyboardEvent) => {
+      keyboardState[event.key] = false;
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
 
     // Handle Resize
     const handleResize = () => {
@@ -91,23 +101,27 @@ export default function Scene() {
       requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
+      // Keyboard rotation
+      if (keyboardState['ArrowUp']) torusKnotParticles.rotation.x -= 0.01;
+      if (keyboardState['ArrowDown']) torusKnotParticles.rotation.x += 0.01;
+      if (keyboardState['ArrowLeft']) torusKnotParticles.rotation.y -= 0.01;
+      if (keyboardState['ArrowRight']) torusKnotParticles.rotation.y += 0.01;
+
       // Animate Torus Knot Particles
-      torusKnotParticles.rotation.x += 0.001;
-      torusKnotParticles.rotation.y += 0.002;
+      torusKnotParticles.rotation.x += 0.0005;
+      torusKnotParticles.rotation.y += 0.001;
       
       // Add a subtle pulsing effect to the particles
       const scale = Math.sin(elapsedTime * 0.5) * 0.1 + 1;
       particlesMaterial.size = 0.015 * scale;
 
-
       // Animate Stars
       starfield.rotation.y = elapsedTime * 0.05;
 
       // Update camera based on mouse
-      camera.position.x += (mouse.x * 0.5 - camera.position.x) * 0.02;
-      camera.position.y += (mouse.y * 0.5 - camera.position.y) * 0.02;
+      camera.position.x += (mouse.x * 2 - camera.position.x) * 0.02;
+      camera.position.y += (mouse.y * 2 - camera.position.y) * 0.02;
       camera.lookAt(scene.position);
-
 
       renderer.render(scene, camera);
     };
@@ -117,6 +131,8 @@ export default function Scene() {
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
       if (currentMount) {
         currentMount.removeChild(renderer.domElement);
       }
