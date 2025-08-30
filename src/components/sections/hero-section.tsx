@@ -14,17 +14,20 @@ export default function HeroSection() {
         transition={{ duration: 0.8 }}
       >
         <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter drop-shadow-lg">
-          KODEGAS
+          KODEGAS Vision
         </h1>
-        <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90 drop-shadow-md">
-          Innovating the Future with AI, ML, IoT & Beyond.
+        <h2 className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90 drop-shadow-md">
+          Leading AI Development, Machine Learning & IoT Solutions Company in Sri Lanka
+        </h2>
+        <p className="mt-2 max-w-3xl mx-auto text-base md:text-lg text-white/80 drop-shadow-md">
+          Expert software development services including artificial intelligence, machine learning models, IoT systems, web applications, and mobile app development. Transform your business with cutting-edge technology solutions.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button size="lg" asChild>
-            <a href="#projects">Our Work</a>
+            <a href="#projects" aria-label="View our AI and software development projects">Our Work</a>
           </Button>
           <Button size="lg" variant="secondary" asChild>
-            <a href="#contact">Contact Us</a>
+            <a href="#contact" aria-label="Contact KODEGAS for AI and software development services">Get Started</a>
           </Button>
         </div>
       </motion.div>

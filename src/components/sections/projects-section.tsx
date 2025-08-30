@@ -49,8 +49,8 @@ export default function ProjectsSection() {
           transition={{ duration: 0.5 }}
           className="text-center space-y-4 mb-16"
         >
-          <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">Our Work</h2>
-          <p className="max-w-2xl mx-auto text-lg text-muted-foreground">We take pride in our work. Here is our flagship project.</p>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">AI & Software Development Portfolio</h2>
+          <p className="max-w-3xl mx-auto text-lg text-muted-foreground">Explore our flagship AI-powered projects and custom software solutions. See how we've helped businesses transform with innovative technology.</p>
         </motion.div>
 
         <div className="grid justify-center gap-8">
@@ -69,16 +69,20 @@ export default function ProjectsSection() {
                     <div className="overflow-hidden">
                       <Image
                         src={project.image}
-                        alt={project.title}
+                        alt={`${project.title} - AI-powered ${project.category} application developed by KODEGAS Vision`}
                         width={600}
                         height={400}
                         className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
-                        data-ai-hint={project.aiHint}
+                        priority={index === 0}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                       />
                     </div>
                     <CardContent className="p-6">
                       <h3 className="font-headline text-2xl font-semibold">{project.title}</h3>
                       <p className="text-primary mt-1">{project.category}</p>
+                      <p className="text-sm text-muted-foreground mt-2">{project.description}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -87,11 +91,13 @@ export default function ProjectsSection() {
                 <DialogHeader>
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} - Detailed view of AI-powered agricultural technology solution by KODEGAS Vision`}
                     width={600}
                     height={400}
                     className="w-full h-auto object-cover rounded-t-lg"
-                    data-ai-hint={project.aiHint}
+                    sizes="(max-width: 768px) 100vw, 600px"
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
                   <DialogTitle className="font-headline text-3xl pt-4">{project.title}</DialogTitle>
                   <div className="flex flex-wrap gap-2 pt-2">

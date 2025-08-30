@@ -1,27 +1,29 @@
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
-import HeroSection from '@/components/sections/hero-section';
-import AboutSection from '@/components/sections/about-section';
-import ServicesSection from '@/components/sections/services-section';
-import ProjectsSection from '@/components/sections/projects-section';
-import ContactSection from '@/components/sections/contact-section';
-import Scene from '@/components/three/scene';
+import { Metadata } from 'next';
+import StructuredData from '@/components/seo/structured-data';
+import { allServiceSchemas, faqSchema } from '@/lib/service-schemas';
+import { generatePageMetadata } from '@/lib/seo-config';
+import HomeClient from '@/components/home-client';
+
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Professional AI, ML & Software Development Services',
+  description: 'Transform your business with cutting-edge AI, machine learning, IoT, and software development solutions. Expert team in Sri Lanka delivering innovative technology solutions.',
+  keywords: [
+    'AI development company',
+    'machine learning services Sri Lanka',
+    'IoT solutions provider',
+    'custom software development',
+    'web application development',
+    'mobile app development Sri Lanka',
+    'technology consulting',
+    'digital transformation'
+  ],
+});
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-dvh">
-      <div className="fixed top-0 left-0 w-full h-full -z-10">
-        <Scene />
-      </div>
-      <Header />
-      <main className="flex-1">
-        <HeroSection />
-        <AboutSection />
-        <ServicesSection />
-        <ProjectsSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <StructuredData data={[...allServiceSchemas, faqSchema]} />
+      <HomeClient />
+    </>
   );
 }

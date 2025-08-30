@@ -57,8 +57,8 @@ export default function ContactSection() {
           transition={{ duration: 0.5 }}
           className="text-center space-y-4 mb-16"
         >
-          <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">Get in Touch</h2>
-          <p className="max-w-2xl mx-auto text-lg text-muted-foreground">Have a project in mind? We'd love to hear from you.</p>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">Contact KODEGAS Vision</h2>
+          <p className="max-w-3xl mx-auto text-lg text-muted-foreground">Ready to transform your business with AI, ML, or custom software solutions? Get in touch with our expert development team in Sri Lanka for a free consultation.</p>
         </motion.div>
         
         <div className="grid md:grid-cols-2 gap-16">
@@ -70,20 +70,34 @@ export default function ContactSection() {
             className="flex flex-col gap-8 order-2 md:order-1"
           >
              <div>
-              <h3 className="font-headline text-2xl font-semibold mb-4">Contact Information</h3>
+              <h3 className="font-headline text-2xl font-semibold mb-4">Business Contact Information</h3>
               <div className="space-y-4 text-muted-foreground">
                 <div className="flex items-start gap-4">
                   <MapPin className="w-6 h-6 text-primary mt-1"/>
-                  <span>Faculty of Science, University of Kelaniya, Sri Lanka</span>
+                  <div>
+                    <p className="font-medium">KODEGAS Vision</p>
+                    <p>Faculty of Science, University of Kelaniya</p>
+                    <p>Kelaniya 11600, Western Province, Sri Lanka</p>
+                  </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <Mail className="w-6 h-6 text-primary"/>
-                  <span>kavindusachinthe@outlook.com</span>
+                  <a href="mailto:kavindusachinthe@outlook.com" className="hover:text-primary transition-colors">
+                    kavindusachinthe@outlook.com
+                  </a>
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="w-6 h-6 text-primary"/>
-                  <span>+94726677555</span>
+                  <a href="tel:+94726677555" className="hover:text-primary transition-colors">
+                    +94 72 667 7555
+                  </a>
                 </div>
+              </div>
+              <div className="mt-6">
+                <p className="text-sm text-muted-foreground">Business Hours:</p>
+                <p className="text-sm">Monday - Friday: 9:00 AM - 6:00 PM (Sri Lanka Time)</p>
+                <p className="text-sm">Saturday: 9:00 AM - 2:00 PM</p>
+                <p className="text-sm">Sunday: Closed</p>
               </div>
             </div>
             

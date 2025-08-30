@@ -1,0 +1,41 @@
+{
+  "budgets": [
+    {
+      "path": "/",
+      "resourceSizes": [
+        {
+          "resourceType": "script",
+          "budget": 400
+        },
+        {
+          "resourceType": "total",
+          "budget": 1500
+        }
+      ]
+    }
+  ],
+  "defaultBudgets": {
+    "performance": [
+      {
+        "metric": "first-contentful-paint",
+        "budget": 1500,
+        "tolerance": 200
+      },
+      {
+        "metric": "largest-contentful-paint", 
+        "budget": 2500,
+        "tolerance": 300
+      },
+      {
+        "metric": "first-input-delay",
+        "budget": 100,
+        "tolerance": 20
+      },
+      {
+        "metric": "cumulative-layout-shift",
+        "budget": 0.1,
+        "tolerance": 0.05
+      }
+    ]
+  }
+}
