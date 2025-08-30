@@ -69,7 +69,7 @@ export default function ProjectsSection() {
                     <div className="overflow-hidden">
                       <Image
                         src={project.image}
-                        alt={project.title}
+                        alt={`${project.title} - ${project.description}`}
                         width={600}
                         height={400}
                         className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
@@ -87,7 +87,7 @@ export default function ProjectsSection() {
                 <DialogHeader>
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} - ${project.description}`}
                     width={600}
                     height={400}
                     className="w-full h-auto object-cover rounded-t-lg"
@@ -117,7 +117,7 @@ export default function ProjectsSection() {
                 </DialogHeader>
                 <DialogFooter className="pt-4">
                   <Button asChild>
-                    <a href="https://weguard.kodegas.com" target="_blank" rel="noopener noreferrer">Visit Site</a>
+                    <a href="https://weguard.kodegas.com" target="_blank" rel="noopener noreferrer" aria-label="Visit WeGuard project website (opens in new tab)">Visit Site</a>
                   </Button>
                 </DialogFooter>
               </DialogContent>

@@ -16,15 +16,15 @@ export default function HeroSection() {
         <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter drop-shadow-lg">
           KODEGAS
         </h1>
-        <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90 drop-shadow-md">
+        <h2 className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90 drop-shadow-md font-medium">
           Innovating the Future with AI, ML, IoT & Beyond.
-        </p>
+        </h2>
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button size="lg" asChild>
-            <a href="#projects">Our Work</a>
+            <a href="#projects" aria-label="View our projects and work portfolio">Our Work</a>
           </Button>
           <Button size="lg" variant="secondary" asChild>
-            <a href="#contact">Contact Us</a>
+            <a href="#contact" aria-label="Contact us for your project needs">Contact Us</a>
           </Button>
         </div>
       </motion.div>
@@ -34,7 +34,7 @@ export default function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
       >
-        <ArrowDown className="h-8 w-8 text-white/50" />
+        <ArrowDown className="h-8 w-8 text-white/50" aria-label="Scroll down to explore more" />
       </motion.div>
     </section>
   );

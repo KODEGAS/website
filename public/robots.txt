@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Allow all crawlers to access all content
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://kodegas.com/sitemap.xml
+
+# Common bot delays
+Crawl-delay: 1
+
+# Specific bot permissions
+User-agent: Googlebot
+Disallow: /api/
+Allow: /
+
+User-agent: Bingbot
+Disallow: /api/
+Allow: /
+
+User-agent: Slurp
+Disallow: /api/
+Allow: /

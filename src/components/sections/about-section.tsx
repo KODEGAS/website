@@ -30,12 +30,14 @@ export default function AboutSection() {
             <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">
               Crafting Tomorrow's Technology
             </h2>
-            <p className="text-lg text-muted-foreground">
-              At KODEGAS, we are driven by a singular mission: to harness the power of cutting-edge technology to solve complex problems and create new opportunities. We are a team of passionate innovators, engineers, and designers dedicated to pushing the boundaries of what's possible.
-            </p>
-            <p className="text-lg text-muted-foreground">
-              Our vision is to build a future where intelligent systems, seamless connectivity, and intuitive applications empower businesses and individuals alike. We believe in a collaborative approach, working closely with our clients to turn their ambitious ideas into reality.
-            </p>
+            <div className="space-y-4">
+              <p className="text-lg text-muted-foreground">
+                At KODEGAS, we are driven by a singular mission: to harness the power of cutting-edge technology to solve complex problems and create new opportunities. We are a team of passionate innovators, engineers, and designers dedicated to pushing the boundaries of what's possible.
+              </p>
+              <p className="text-lg text-muted-foreground">
+                Our vision is to build a future where intelligent systems, seamless connectivity, and intuitive applications empower businesses and individuals alike. We believe in a collaborative approach, working closely with our clients to turn their ambitious ideas into reality.
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       </div>

@@ -1,0 +1,21 @@
+{
+  "name": "KODEGAS Vision - Innovating the Future",
+  "short_name": "KODEGAS",
+  "description": "KODEGAS specializes in AI, Machine Learning, IoT, Web Applications, and Mobile Applications. We build the future, today.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["technology", "business", "productivity"],
+  "lang": "en",
+  "scope": "/",
+  "id": "kodegas-vision"
+}
