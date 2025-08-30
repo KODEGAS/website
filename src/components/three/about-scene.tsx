@@ -15,9 +15,15 @@ export default function AboutScene() {
     const camera = new THREE.PerspectiveCamera(75, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000);
     camera.position.z = 3.5;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ 
+      antialias: window.devicePixelRatio <= 1,
+      alpha: true,
+      powerPreference: "high-performance",
+    });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = false; // Disable shadows for better performance
+    renderer.physicallyCorrectLights = false;
     currentMount.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 

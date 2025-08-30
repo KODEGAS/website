@@ -17,17 +17,24 @@ export default function Scene() {
     const camera = new THREE.PerspectiveCamera(75, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000);
     camera.position.z = 5;
 
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    // Renderer with performance optimizations
+    const renderer = new THREE.WebGLRenderer({ 
+      antialias: window.devicePixelRatio <= 1, // Only antialias on low DPI displays
+      alpha: true,
+      powerPreference: "high-performance",
+    });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Performance optimizations
+    renderer.shadowMap.enabled = false; // Disable shadows for better performance
+    renderer.physicallyCorrectLights = false;
     currentMount.appendChild(renderer.domElement);
 
-    // Main Object (TorusKnot as Particles)
-    const geometry = new THREE.TorusKnotGeometry(1.2, 0.35, 200, 32);
+    // Main Object (TorusKnot as Particles) - Reduced complexity
+    const geometry = new THREE.TorusKnotGeometry(1.2, 0.35, 100, 16); // Reduced from 200, 32
     const particlesMaterial = new THREE.PointsMaterial({
         color: 0xcc66ff, // Brighter purple
-        size: 0.015,
+        size: 0.02, // Slightly larger for fewer particles
         blending: THREE.AdditiveBlending,
         transparent: true,
         sizeAttenuation: true,
@@ -47,8 +54,8 @@ export default function Scene() {
     pointLight2.position.set(-5, -5, -5);
     scene.add(pointLight2);
 
-    // Particle System (Stars)
-    const particlesCount = 500;
+    // Particle System (Stars) - Reduced count for performance
+    const particlesCount = 250; // Reduced from 500
     const positions = new Float32Array(particlesCount * 3);
     for (let i = 0; i < particlesCount * 3; i++) {
       positions[i] = (Math.random() - 0.5) * 20;

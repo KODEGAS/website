@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import AboutScene from '@/components/three/about-scene';
+import LazyAboutScene from '@/components/three/lazy-about-scene';
 
 export default function AboutSection() {
   const variants = {
@@ -21,7 +21,7 @@ export default function AboutSection() {
           className="grid md:grid-cols-2 gap-16 items-center"
         >
           <motion.div variants={variants} className="h-[400px] md:h-[500px] w-full">
-            <AboutScene />
+            <LazyAboutScene />
           </motion.div>
           <motion.div 
             variants={variants}

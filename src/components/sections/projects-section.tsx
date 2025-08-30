@@ -74,6 +74,9 @@ export default function ProjectsSection() {
                         height={400}
                         className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
                         data-ai-hint={project.aiHint}
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        priority={false}
                       />
                     </div>
                     <CardContent className="p-6">
@@ -92,6 +95,9 @@ export default function ProjectsSection() {
                     height={400}
                     className="w-full h-auto object-cover rounded-t-lg"
                     data-ai-hint={project.aiHint}
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 600px"
+                    priority={false}
                   />
                   <DialogTitle className="font-headline text-3xl pt-4">{project.title}</DialogTitle>
                   <div className="flex flex-wrap gap-2 pt-2">
