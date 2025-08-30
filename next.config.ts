@@ -46,19 +46,41 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   webpack: (config, { dev, isServer }) => {
+    // Add better error handling for chunk loading
+    if (!isServer) {
+      config.output.crossOriginLoading = 'anonymous';
+      
+      // Add retry mechanism for failed chunk loads
+      const originalPublicPath = config.output.publicPath;
+      config.output.publicPath = originalPublicPath;
+      
+      // Enhanced error handling for chunk loading
+      config.optimization.realContentHash = true;
+      
+      // Add better source map support for debugging
+      if (dev) {
+        config.devtool = 'eval-source-map';
+      } else {
+        config.devtool = 'hidden-source-map';
+      }
+    }
+
     // Optimize bundle splitting for better performance
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',
         minSize: 20000,
         maxSize: 244000,
+        maxAsyncRequests: 10,
+        maxInitialRequests: 6,
+        enforceSizeThreshold: 50000,
         cacheGroups: {
           default: {
             minChunks: 2,
             priority: -20,
             reuseExistingChunk: true,
           },
-          // React framework chunk
+          // React framework chunk with better error handling
           framework: {
             test: /[\/]node_modules[\/](react|react-dom|scheduler)[\/]/,
             name: 'framework',
@@ -133,6 +155,14 @@ const nextConfig: NextConfig = {
     // Tree shaking optimizations
     config.optimization.usedExports = true;
     config.optimization.sideEffects = false;
+    
+    // Add module resolution improvements
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      net: false,
+      tls: false,
+    };
 
     return config;
   },

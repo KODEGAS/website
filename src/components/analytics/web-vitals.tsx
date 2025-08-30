@@ -10,6 +10,24 @@ export interface WebVitalMetric {
   entries: PerformanceEntry[];
 }
 
+// Enhanced error boundary for performance monitoring
+interface ErrorInfo {
+  componentStack: string;
+  errorBoundary?: string;
+  errorBoundaryStack?: string;
+}
+
+interface ErrorReport {
+  timestamp: number;
+  errorType: 'React' | 'ResourceLoading' | 'Performance' | 'ChunkLoading';
+  message: string;
+  stackTrace?: string;
+  userAgent: string;
+  url: string;
+  buildId?: string;
+  errorInfo?: ErrorInfo;
+}
+
 export function WebVitals() {
   useEffect(() => {
     // Dynamic import of web-vitals library only when needed
@@ -102,81 +120,177 @@ function getRating(metricName: string, value: number): 'good' | 'needs-improveme
   return 'poor';
 }
 
-// Performance observer for additional metrics
+// Performance observer for additional metrics with proper error handling
 export function PerformanceObserver() {
   useEffect(() => {
     if (typeof window === 'undefined' || !('PerformanceObserver' in window)) {
+      console.warn('PerformanceObserver not supported in this browser');
       return;
     }
 
+    const cleanupFunctions: (() => void)[] = [];
+
+    // Check which entry types are supported
+    const getSupportedEntryTypes = (): string[] => {
+      const allEntryTypes = ['navigation', 'resource', 'measure', 'mark', 'paint', 'longtask', 'largest-contentful-paint'];
+      const supported: string[] = [];
+      
+      for (const entryType of allEntryTypes) {
+        try {
+          // Test if the entry type is supported by creating a temporary observer
+          const testObserver = new PerformanceObserver(() => {});
+          testObserver.observe({ entryTypes: [entryType] });
+          testObserver.disconnect();
+          supported.push(entryType);
+        } catch (error) {
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`PerformanceObserver: ${entryType} not supported`);
+          }
+        }
+      }
+      
+      return supported;
+    };
+
     // Observe navigation timing
     const observeNavigation = () => {
-      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-      if (navigation) {
-        const metrics = {
-          dns: navigation.domainLookupEnd - navigation.domainLookupStart,
-          tcp: navigation.connectEnd - navigation.connectStart,
-          request: navigation.responseStart - navigation.requestStart,
-          response: navigation.responseEnd - navigation.responseStart,
-          dom: navigation.domContentLoadedEventEnd - navigation.responseEnd,
-          load: navigation.loadEventEnd - navigation.loadEventStart,
-        };
+      try {
+        const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+        if (navigation) {
+          const metrics = {
+            dns: navigation.domainLookupEnd - navigation.domainLookupStart,
+            tcp: navigation.connectEnd - navigation.connectStart,
+            request: navigation.responseStart - navigation.requestStart,
+            response: navigation.responseEnd - navigation.responseStart,
+            dom: navigation.domContentLoadedEventEnd - navigation.responseEnd,
+            load: navigation.loadEventEnd - navigation.loadEventStart,
+          };
 
-        if (process.env.NODE_ENV === 'development') {
-          console.log('📊 Navigation Timing:', metrics);
+          if (process.env.NODE_ENV === 'development') {
+            console.log('📊 Navigation Timing:', metrics);
+          }
         }
+      } catch (error) {
+        console.warn('Error observing navigation timing:', error);
       }
     };
 
-    // Observe resource loading
-    const observeResources = () => {
-      const observer = new window.PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
-          const resourceEntry = entry as PerformanceResourceTiming;
-          
-          // Log slow resources
-          if (resourceEntry.duration > 1000) {
-            console.warn(`🐌 Slow resource (${Math.round(resourceEntry.duration)}ms):`, resourceEntry.name);
-          }
-          
-          // Track Three.js bundle loading
-          if (resourceEntry.name.includes('three') || resourceEntry.name.includes('Three')) {
-            console.log(`🎨 Three.js resource loaded (${Math.round(resourceEntry.duration)}ms):`, resourceEntry.name);
-          }
-        }
-      });
+    // Observe resource loading with error handling
+    const observeResources = (supportedTypes: string[]) => {
+      if (!supportedTypes.includes('resource')) {
+        console.log('Resource timing not supported');
+        return;
+      }
 
-      observer.observe({ entryTypes: ['resource'] });
-      
-      return () => observer.disconnect();
-    };
-
-    // Observe long tasks
-    const observeLongTasks = () => {
-      if ('PerformanceObserver' in window) {
-        try {
-          const observer = new window.PerformanceObserver((list) => {
+      try {
+        const observer = new PerformanceObserver((list) => {
+          try {
             for (const entry of list.getEntries()) {
-              console.warn(`🔥 Long task detected (${Math.round(entry.duration)}ms):`, entry);
+              const resourceEntry = entry as PerformanceResourceTiming;
+              
+              // Log slow resources
+              if (resourceEntry.duration > 1000) {
+                console.warn(`🐌 Slow resource (${Math.round(resourceEntry.duration)}ms):`, resourceEntry.name);
+              }
+              
+              // Track Three.js bundle loading
+              if (resourceEntry.name.includes('three') || resourceEntry.name.includes('Three')) {
+                console.log(`🎨 Three.js resource loaded (${Math.round(resourceEntry.duration)}ms):`, resourceEntry.name);
+              }
             }
-          });
+          } catch (error) {
+            console.warn('Error processing resource entries:', error);
+          }
+        });
 
-          observer.observe({ entryTypes: ['longtask'] });
-          
-          return () => observer.disconnect();
-        } catch (error) {
-          // Long task API not supported
+        observer.observe({ entryTypes: ['resource'] });
+        cleanupFunctions.push(() => observer.disconnect());
+        
+      } catch (error) {
+        console.warn('Error setting up resource observer:', error);
+      }
+    };
+
+    // Observe long tasks with proper error handling
+    const observeLongTasks = (supportedTypes: string[]) => {
+      if (!supportedTypes.includes('longtask')) {
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Long task observer not supported - using fallback performance monitoring');
+        }
+        return;
+      }
+
+      try {
+        const observer = new PerformanceObserver((list) => {
+          try {
+            for (const entry of list.getEntries()) {
+              if (process.env.NODE_ENV === 'development') {
+                console.warn(`🔥 Long task detected (${Math.round(entry.duration)}ms):`, {
+                  duration: entry.duration,
+                  startTime: entry.startTime,
+                  name: entry.name
+                });
+              }
+              
+              // Send to analytics in production
+              if (process.env.NODE_ENV === 'production' && entry.duration > 50) {
+                // Report long tasks to your analytics service
+                if (typeof window !== 'undefined' && (window as any).gtag) {
+                  (window as any).gtag('event', 'long_task', {
+                    event_category: 'Performance',
+                    value: Math.round(entry.duration),
+                    custom_map: {
+                      task_duration: entry.duration,
+                      task_start: entry.startTime
+                    }
+                  });
+                }
+              }
+            }
+          } catch (error) {
+            console.warn('Error processing long task entries:', error);
+          }
+        });
+
+        observer.observe({ entryTypes: ['longtask'] });
+        cleanupFunctions.push(() => observer.disconnect());
+        
+      } catch (error) {
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('Long task observer setup failed:', error);
         }
       }
     };
 
-    observeNavigation();
-    const cleanupResources = observeResources();
-    const cleanupLongTasks = observeLongTasks();
+    // Initialize observers with supported entry types
+    try {
+      const supportedEntryTypes = getSupportedEntryTypes();
+      
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔍 Supported PerformanceObserver entry types:', supportedEntryTypes);
+      }
+      
+      if (supportedEntryTypes.length === 0) {
+        console.warn('No PerformanceObserver entry types supported');
+        return;
+      }
+
+      observeNavigation();
+      observeResources(supportedEntryTypes);
+      observeLongTasks(supportedEntryTypes);
+      
+    } catch (error) {
+      console.warn('Error initializing performance observers:', error);
+    }
 
     return () => {
-      if (cleanupResources) cleanupResources();
-      if (cleanupLongTasks) cleanupLongTasks();
+      cleanupFunctions.forEach(cleanup => {
+        try {
+          cleanup();
+        } catch (error) {
+          console.warn('Error during performance observer cleanup:', error);
+        }
+      });
     };
   }, []);
 

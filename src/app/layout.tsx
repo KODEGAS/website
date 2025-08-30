@@ -5,6 +5,10 @@ import { Toaster } from '@/components/ui/toaster';
 import { generatePageMetadata, jsonLdWebsite, jsonLdOrganization, jsonLdLocalBusiness } from '@/lib/seo-config';
 import StructuredData from '@/components/seo/structured-data';
 import { WebVitals, PerformanceObserver } from '@/components/analytics/web-vitals';
+import { ErrorBoundary } from '@/components/error-boundary';
+import GlobalErrorHandler from '@/components/global-error-handler';
+import { ResourceTracker } from '@/components/resource-tracker';
+import { ChunkLoadingHandler } from '@/components/chunk-loader';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'AI, ML, IoT & Software Development Company - KODEGAS Vision',
@@ -44,6 +48,8 @@ export default function RootLayout({
             .to-cyan-400 { --tw-gradient-to: rgb(34 211 238); }
             .bg-clip-text { background-clip: text; -webkit-background-clip: text; }
             .text-transparent { color: transparent; }
+            /* Font display optimization */
+            @font-face { font-display: swap; }
           `
         }} />
         
@@ -51,10 +57,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
-          href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" 
+          href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" 
           rel="stylesheet" 
         />
-        {/* Preload critical font weights */}
+        {/* Only preload the most critical font weight used above-fold */}
         <link 
           rel="preload" 
           href="https://fonts.gstatic.com/s/sora/v11/xMQOuFFYT2XOZY8dA6A.woff2" 
@@ -64,25 +70,28 @@ export default function RootLayout({
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
         {/* Resource hints for performance */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         
-        {/* Preload critical resources */}
-        <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon" />
-        
-        {/* Prefetch likely-to-be-needed resources */}
+        {/* Remove unused preloads - favicon.ico is already linked above */}
+        {/* Only prefetch resources that are likely to be used */}
         <link rel="prefetch" href="https://res.cloudinary.com/du5tkpcut/image/upload/v1755515595/Screenshot_2025-08-18_at_4.42.50_PM_ek5hl8.png" as="image" />
         <StructuredData data={[jsonLdWebsite, jsonLdOrganization, jsonLdLocalBusiness]} />
       </head>
       <body className={cn('font-body antialiased')}>
-        {children}
+        <ErrorBoundary>
+          {children}
+        </ErrorBoundary>
         <Toaster />
         <WebVitals />
         <PerformanceObserver />
+        <ResourceTracker />
+        <ChunkLoadingHandler />
+        <GlobalErrorHandler />
       </body>
     </html>
   );
