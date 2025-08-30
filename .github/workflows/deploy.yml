@@ -1,0 +1,88 @@
+name: Deploy to Production
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run performance validation
+      run: node validate-performance-fixes.js
+      
+    - name: Build for production
+      run: npm run build
+      env:
+        NEXT_PUBLIC_SITE_URL: https://kodegas.com
+        SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        NODE_ENV: production
+        
+    - name: Run production tests
+      run: |
+        echo "Running production readiness checks..."
+        # Check if build directory exists
+        if [ ! -d ".next" ]; then
+          echo "Build failed - .next directory not found"
+          exit 1
+        fi
+        
+        # Check for critical files
+        if [ ! -f ".next/BUILD_ID" ]; then
+          echo "Build incomplete - BUILD_ID not found"
+          exit 1
+        fi
+        
+        echo "Production build validated successfully"
+        
+    - name: Setup Firebase CLI
+      uses: google-github-actions/setup-gcloud@v2
+      with:
+        service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        project_id: ${{ secrets.FIREBASE_PROJECT_ID }}
+        
+    - name: Install Firebase CLI
+      run: npm install -g firebase-tools
+      
+    - name: Deploy to Firebase App Hosting
+      run: |
+        echo "Deploying to Firebase App Hosting..."
+        firebase deploy --project ${{ secrets.FIREBASE_PROJECT_ID }}
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        
+    - name: Deploy notification
+      if: success()
+      run: |
+        echo "🚀 Deployment successful!"
+        echo "Site URL: https://kodegas.com"
+        
+    - name: Deploy failure notification
+      if: failure()
+      run: |
+        echo "❌ Deployment failed!"
+        echo "Check the logs above for details."

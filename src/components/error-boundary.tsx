@@ -154,7 +154,7 @@ export class ErrorBoundary extends Component<Props, State> {
             
             <div className="mb-4">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                We're sorry for the inconvenience. An unexpected error occurred while loading this page.
+                We&apos;re sorry for the inconvenience. An unexpected error occurred while loading this page.
               </p>
               
               {process.env.NODE_ENV === 'development' && this.state.error && (

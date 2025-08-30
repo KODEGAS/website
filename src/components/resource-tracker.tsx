@@ -1,3 +1,215 @@
-"use client"
+"use client";
 
-import { useEffect } from 'react';\n\ninterface ResourceUsage {\n  url: string;\n  preloaded: boolean;\n  used: boolean;\n  loadTime?: number;\n  size?: number;\n}\n\nexport function ResourceTracker() {\n  useEffect(() => {\n    if (typeof window === 'undefined' || !('PerformanceObserver' in window)) {\n      return;\n    }\n\n    const preloadedResources = new Map<string, ResourceUsage>();\n    const resourceUsageStats: ResourceUsage[] = [];\n\n    // Track all preloaded resources from DOM\n    const trackPreloadedResources = () => {\n      const preloadLinks = document.querySelectorAll('link[rel=\"preload\"]');\n      preloadLinks.forEach((link) => {\n        const href = (link as HTMLLinkElement).href;\n        if (href) {\n          preloadedResources.set(href, {\n            url: href,\n            preloaded: true,\n            used: false,\n          });\n        }\n      });\n    };\n\n    // Monitor resource loading to see which preloaded resources are actually used\n    const monitorResourceUsage = () => {\n      try {\n        const observer = new PerformanceObserver((list) => {\n          for (const entry of list.getEntries()) {\n            const resourceEntry = entry as PerformanceResourceTiming;\n            const url = resourceEntry.name;\n            \n            // Check if this was a preloaded resource\n            if (preloadedResources.has(url)) {\n              const resource = preloadedResources.get(url)!;\n              resource.used = true;\n              resource.loadTime = resourceEntry.duration;\n              resource.size = resourceEntry.transferSize || resourceEntry.encodedBodySize;\n              \n              if (process.env.NODE_ENV === 'development') {\n                console.log(`✅ Preloaded resource used: ${url} (${Math.round(resourceEntry.duration)}ms)`);\n              }\n            }\n            \n            // Track all resources for analysis\n            resourceUsageStats.push({\n              url,\n              preloaded: preloadedResources.has(url),\n              used: true,\n              loadTime: resourceEntry.duration,\n              size: resourceEntry.transferSize || resourceEntry.encodedBodySize,\n            });\n          }\n        });\n\n        observer.observe({ entryTypes: ['resource'] });\n        return () => observer.disconnect();\n      } catch (error) {\n        console.warn('Resource tracking observer failed:', error);\n      }\n    };\n\n    // Check for unused preloaded resources after page load\n    const checkUnusedPreloads = () => {\n      setTimeout(() => {\n        const unusedPreloads: string[] = [];\n        \n        preloadedResources.forEach((resource, url) => {\n          if (!resource.used) {\n            unusedPreloads.push(url);\n          }\n        });\n\n        if (unusedPreloads.length > 0) {\n          console.warn('🚨 Unused preloaded resources detected:', unusedPreloads);\n          \n          // Report to analytics in production\n          if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined' && (window as any).gtag) {\n            (window as any).gtag('event', 'unused_preload', {\n              event_category: 'Performance',\n              custom_map: {\n                unused_count: unusedPreloads.length,\n                unused_resources: unusedPreloads.slice(0, 3).join(', '), // Limit to first 3\n              }\n            });\n          }\n        }\n\n        // Log performance summary in development\n        if (process.env.NODE_ENV === 'development') {\n          console.group('📊 Resource Usage Summary');\n          console.log('Total preloaded resources:', preloadedResources.size);\n          console.log('Used preloaded resources:', Array.from(preloadedResources.values()).filter(r => r.used).length);\n          console.log('Unused preloaded resources:', unusedPreloads.length);\n          if (unusedPreloads.length > 0) {\n            console.log('Unused resources:', unusedPreloads);\n          }\n          console.groupEnd();\n        }\n      }, 5000); // Check after 5 seconds to allow for all resources to load\n    };\n\n    // Initialize tracking\n    trackPreloadedResources();\n    const cleanup = monitorResourceUsage();\n    \n    // Check for unused preloads after initial load\n    if (document.readyState === 'complete') {\n      checkUnusedPreloads();\n    } else {\n      window.addEventListener('load', checkUnusedPreloads);\n    }\n\n    return () => {\n      if (cleanup) cleanup();\n      window.removeEventListener('load', checkUnusedPreloads);\n    };\n  }, []);\n\n  return null;\n}\n\n// Font loading optimization hook\nexport function useFontOptimization() {\n  useEffect(() => {\n    // Check if fonts are loaded efficiently\n    if ('fonts' in document) {\n      const fontLoadingPromises: Promise<FontFace>[] = [];\n      \n      // Load critical fonts first\n      const criticalFonts = [\n        'Sora 400',\n        'Sora 700', // Most commonly used weights\n      ];\n      \n      criticalFonts.forEach(font => {\n        if ((document as any).fonts.check(`1em ${font}`)) {\n          console.log(`✅ Font already loaded: ${font}`);\n        } else {\n          const fontLoadPromise = (document as any).fonts.load(`1em ${font}`);\n          fontLoadingPromises.push(fontLoadPromise);\n        }\n      });\n      \n      if (fontLoadingPromises.length > 0) {\n        Promise.all(fontLoadingPromises)\n          .then(() => {\n            if (process.env.NODE_ENV === 'development') {\n              console.log('✅ Critical fonts loaded successfully');\n            }\n          })\n          .catch(error => {\n            console.warn('Font loading failed:', error);\n          });\n      }\n    }\n  }, []);\n}\n\n// Image preload optimization\nexport function useImagePreloadOptimization() {\n  useEffect(() => {\n    // Track image loading performance\n    const trackImageLoading = () => {\n      const images = document.querySelectorAll('img[loading=\"eager\"], img:not([loading])');\n      \n      images.forEach((img) => {\n        if (img instanceof HTMLImageElement) {\n          const startTime = performance.now();\n          \n          const handleLoad = () => {\n            const loadTime = performance.now() - startTime;\n            if (loadTime > 1000 && process.env.NODE_ENV === 'development') {\n              console.warn(`🐌 Slow image load (${Math.round(loadTime)}ms):`, img.src);\n            }\n          };\n          \n          const handleError = () => {\n            console.error('Failed to load image:', img.src);\n          };\n          \n          if (img.complete) {\n            handleLoad();\n          } else {\n            img.addEventListener('load', handleLoad, { once: true });\n            img.addEventListener('error', handleError, { once: true });\n          }\n        }\n      });\n    };\n    \n    // Track images after DOM is ready\n    if (document.readyState === 'complete') {\n      trackImageLoading();\n    } else {\n      window.addEventListener('load', trackImageLoading);\n    }\n    \n    return () => {\n      window.removeEventListener('load', trackImageLoading);\n    };\n  }, []);\n}
+import { useEffect } from 'react';
+
+interface ResourceUsage {
+  url: string;
+  preloaded: boolean;
+  used: boolean;
+  loadTime?: number;
+  size?: number;
+}
+
+export function ResourceTracker() {
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('PerformanceObserver' in window)) {
+      return;
+    }
+
+    const preloadedResources = new Map<string, ResourceUsage>();
+    const resourceUsageStats: ResourceUsage[] = [];
+
+    // Track all preloaded resources from DOM
+    const trackPreloadedResources = () => {
+      const preloadLinks = document.querySelectorAll('link[rel="preload"]');
+      preloadLinks.forEach((link) => {
+        const href = (link as HTMLLinkElement).href;
+        if (href) {
+          preloadedResources.set(href, {
+            url: href,
+            preloaded: true,
+            used: false,
+          });
+        }
+      });
+    };
+
+    // Monitor resource loading to see which preloaded resources are actually used
+    const monitorResourceUsage = () => {
+      try {
+        const observer = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            const resourceEntry = entry as PerformanceResourceTiming;
+            const url = resourceEntry.name;
+            
+            // Check if this was a preloaded resource
+            if (preloadedResources.has(url)) {
+              const resource = preloadedResources.get(url)!;
+              resource.used = true;
+              resource.loadTime = resourceEntry.duration;
+              resource.size = resourceEntry.transferSize || resourceEntry.encodedBodySize;
+              
+              if (process.env.NODE_ENV === 'development') {
+                console.log(`✅ Preloaded resource used: ${url} (${Math.round(resourceEntry.duration)}ms)`);
+              }
+            }
+            
+            // Track all resources for analysis
+            resourceUsageStats.push({
+              url,
+              preloaded: preloadedResources.has(url),
+              used: true,
+              loadTime: resourceEntry.duration,
+              size: resourceEntry.transferSize || resourceEntry.encodedBodySize,
+            });
+          }
+        });
+
+        observer.observe({ entryTypes: ['resource'] });
+        return () => observer.disconnect();
+      } catch (error) {
+        console.warn('Resource tracking observer failed:', error);
+      }
+    };
+
+    // Check for unused preloaded resources after page load
+    const checkUnusedPreloads = () => {
+      setTimeout(() => {
+        const unusedPreloads: string[] = [];
+        
+        preloadedResources.forEach((resource, url) => {
+          if (!resource.used) {
+            unusedPreloads.push(url);
+          }
+        });
+
+        if (unusedPreloads.length > 0) {
+          console.warn('🚨 Unused preloaded resources detected:', unusedPreloads);
+          
+          // Report to analytics in production
+          if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'unused_preload', {
+              event_category: 'Performance',
+              custom_map: {
+                unused_count: unusedPreloads.length,
+                unused_resources: unusedPreloads.slice(0, 3).join(', '), // Limit to first 3
+              }
+            });
+          }
+        }
+
+        // Log performance summary in development
+        if (process.env.NODE_ENV === 'development') {
+          console.group('📊 Resource Usage Summary');
+          console.log('Total preloaded resources:', preloadedResources.size);
+          console.log('Used preloaded resources:', Array.from(preloadedResources.values()).filter(r => r.used).length);
+          console.log('Unused preloaded resources:', unusedPreloads.length);
+          if (unusedPreloads.length > 0) {
+            console.log('Unused resources:', unusedPreloads);
+          }
+          console.groupEnd();
+        }
+      }, 5000); // Check after 5 seconds to allow for all resources to load
+    };
+
+    // Initialize tracking
+    trackPreloadedResources();
+    const cleanup = monitorResourceUsage();
+    
+    // Check for unused preloads after initial load
+    if (document.readyState === 'complete') {
+      checkUnusedPreloads();
+    } else {
+      window.addEventListener('load', checkUnusedPreloads);
+    }
+
+    return () => {
+      if (cleanup) cleanup();
+      window.removeEventListener('load', checkUnusedPreloads);
+    };
+  }, []);
+
+  return null;
+}
+
+// Font loading optimization hook
+export function useFontOptimization() {
+  useEffect(() => {
+    // Check if fonts are loaded efficiently
+    if ('fonts' in document) {
+      const fontLoadingPromises: Promise<FontFace>[] = [];
+      
+      // Load critical fonts first
+      const criticalFonts = [
+        'Sora 400',
+        'Sora 700', // Most commonly used weights
+      ];
+      
+      criticalFonts.forEach(font => {
+        if ((document as any).fonts.check(`1em ${font}`)) {
+          console.log(`✅ Font already loaded: ${font}`);
+        } else {
+          const fontLoadPromise = (document as any).fonts.load(`1em ${font}`);
+          fontLoadingPromises.push(fontLoadPromise);
+        }
+      });
+      
+      if (fontLoadingPromises.length > 0) {
+        Promise.all(fontLoadingPromises)
+          .then(() => {
+            if (process.env.NODE_ENV === 'development') {
+              console.log('✅ Critical fonts loaded successfully');
+            }
+          })
+          .catch(error => {
+            console.warn('Font loading failed:', error);
+          });
+      }
+    }
+  }, []);
+}
+
+// Image preload optimization
+export function useImagePreloadOptimization() {
+  useEffect(() => {
+    // Track image loading performance
+    const trackImageLoading = () => {
+      const images = document.querySelectorAll('img[loading="eager"], img:not([loading])');
+      
+      images.forEach((img) => {
+        if (img instanceof HTMLImageElement) {
+          const startTime = performance.now();
+          
+          const handleLoad = () => {
+            const loadTime = performance.now() - startTime;
+            if (loadTime > 1000 && process.env.NODE_ENV === 'development') {
+              console.warn(`🐌 Slow image load (${Math.round(loadTime)}ms):`, img.src);
+            }
+          };
+          
+          const handleError = () => {
+            console.error('Failed to load image:', img.src);
+          };
+          
+          if (img.complete) {
+            handleLoad();
+          } else {
+            img.addEventListener('load', handleLoad, { once: true });
+            img.addEventListener('error', handleError, { once: true });
+          }
+        }
+      });
+    };
+    
+    // Track images after DOM is ready
+    if (document.readyState === 'complete') {
+      trackImageLoading();
+    } else {
+      window.addEventListener('load', trackImageLoading);
+    }
+    
+    return () => {
+      window.removeEventListener('load', trackImageLoading);
+    };
+  }, []);
+}

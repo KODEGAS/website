@@ -45,27 +45,27 @@ export function ErrorDashboard() {
   const [filter, setFilter] = useState<string>('all');
 
   useEffect(() => {
+    const fetchErrorData = async () => {
+      try {
+        const params = new URLSearchParams();
+        if (filter !== 'all') params.append('type', filter);
+        params.append('limit', '100');
+
+        const response = await fetch(`/api/error-tracking?${params}`);
+        const result = await response.json();
+        
+        setData(result);
+      } catch (error) {
+        console.error('Failed to fetch error data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchErrorData();
     const interval = setInterval(fetchErrorData, 30000); // Refresh every 30 seconds
     return () => clearInterval(interval);
   }, [filter]);
-
-  const fetchErrorData = async () => {
-    try {
-      const params = new URLSearchParams();
-      if (filter !== 'all') params.append('type', filter);
-      params.append('limit', '100');
-
-      const response = await fetch(`/api/error-tracking?${params}`);
-      const result = await response.json();
-      
-      setData(result);
-    } catch (error) {
-      console.error('Failed to fetch error data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const formatTimestamp = (timestamp: number) => {
     return new Date(timestamp).toLocaleString();

@@ -50,7 +50,7 @@ export default function ProjectsSection() {
           className="text-center space-y-4 mb-16"
         >
           <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">AI & Software Development Portfolio</h2>
-          <p className="max-w-3xl mx-auto text-lg text-muted-foreground">Explore our flagship AI-powered projects and custom software solutions. See how we've helped businesses transform with innovative technology.</p>
+          <p className="max-w-3xl mx-auto text-lg text-muted-foreground">Explore our flagship AI-powered projects and custom software solutions. See how we&apos;ve helped businesses transform with innovative technology.</p>
         </motion.div>
 
         <div className="grid justify-center gap-8">
