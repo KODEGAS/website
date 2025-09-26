@@ -41,7 +41,7 @@ export default function AboutSection() {
               Leading AI & Software Development Company in Sri Lanka
             </h2>
             <p className="text-lg text-muted-foreground">
-              KODEGAS Vision is a premier technology company specializing in artificial intelligence, machine learning, IoT solutions, and custom software development. Based in Sri Lanka, we serve clients globally with innovative technology solutions that drive business transformation and digital growth.
+              KODEGAS is a premier technology company specializing in artificial intelligence, machine learning, IoT solutions, and custom software development. Based in Sri Lanka, we serve clients globally with innovative technology solutions that drive business transformation and digital growth.
             </p>
             <p className="text-lg text-muted-foreground">
               Our expert team of AI engineers, software developers, and technology consultants combines deep technical expertise with industry knowledge to deliver scalable, high-performance solutions. From AI-powered applications to enterprise software systems, we turn complex challenges into competitive advantages.

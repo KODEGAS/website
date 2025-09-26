@@ -1,4 +1,4 @@
-# **App Name**: KODEGAS Vision
+# **App Name**: KODEGAS
 
 ## Core Features:
 

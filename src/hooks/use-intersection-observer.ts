@@ -92,7 +92,7 @@ export function useLazyComponent(componentName: string) {
 }
 
 // Hook for preloading next sections
-export function usePreloadNext(preloadComponents: string[] = []) {
+export function usePreloadNext(preloadComponents: (() => Promise<any>)[] = []) {
   const { elementRef, isIntersecting } = useIntersectionObserver({
     threshold: 0.5,
     rootMargin: '200px',
@@ -102,13 +102,43 @@ export function usePreloadNext(preloadComponents: string[] = []) {
   useEffect(() => {
     if (isIntersecting && preloadComponents.length > 0) {
       // Preload next components when current section is visible
-      preloadComponents.forEach((componentPath) => {
-        import(componentPath).catch((error) => {
-          console.warn(`Failed to preload ${componentPath}:`, error);
-        });
+      preloadComponents.forEach((componentLoader) => {
+        try {
+          componentLoader().catch((error) => {
+            console.warn('Failed to preload component:', error);
+          });
+        } catch (error) {
+          console.warn('Failed to execute component loader:', error);
+        }
       });
     }
   }, [isIntersecting, preloadComponents]);
 
   return { elementRef };
+}
+
+// Utility function to create component preloader functions
+export function createComponentPreloader(componentPath: string) {
+  return () => {
+    // Use a switch statement or mapping for known component paths
+    switch (componentPath) {
+      case 'about-section':
+        return import('@/components/sections/about-section');
+      case 'contact-section':
+        return import('@/components/sections/contact-section');
+      case 'projects-section':
+        return import('@/components/sections/projects-section');
+      case 'services-section':
+        return import('@/components/sections/services-section');
+      case 'hero-section':
+        return import('@/components/sections/hero-section');
+      case 'scene':
+        return import('@/components/three/scene');
+      case 'about-scene':
+        return import('@/components/three/about-scene');
+      default:
+        console.warn(`Unknown component path: ${componentPath}`);
+        return Promise.resolve(null);
+    }
+  };
 }

@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { href: '#about', label: 'About Us', title: 'Learn about KODEGAS Vision AI and software development company' },
+  { href: '#about', label: 'About Us', title: 'Learn about KODEGAS AI and software development company' },
   { href: '#services', label: 'Services', title: 'AI, ML, IoT, web and mobile development services' },
   { href: '#projects', label: 'Portfolio', title: 'View our AI and software development projects' },
-  { href: '#contact', label: 'Contact', title: 'Contact KODEGAS Vision for your next project' },
+  { href: '#contact', label: 'Contact', title: 'Contact KODEGAS for your next project' },
 ];
 
 export default function Header() {
@@ -33,7 +33,7 @@ export default function Header() {
       isScrolled ? "bg-background/80 backdrop-blur-sm border-b" : "bg-transparent",
     )}>
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center" aria-label="KODEGAS Vision - AI and Software Development Company Home">
+        <Link href="/" className="flex items-center" aria-label="KODEGAS - AI and Software Development Company Home">
           <Logo />
         </Link>
 

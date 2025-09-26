@@ -1,14 +1,8 @@
 'use client';
-import dynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { BrainCircuit, Bot, Network, AppWindow, Smartphone, Database } from "lucide-react";
 import { useLazyComponent } from '@/hooks/use-intersection-observer';
-import { SectionSkeleton } from '@/components/ui/skeleton';
-
-// Dynamic import for Framer Motion to reduce initial bundle
-const motion = dynamic(() => import('framer-motion').then(mod => ({ default: mod.motion })), {
-  ssr: false,
-});
 
 // Optimize icon imports
 const ServiceIcon = ({ icon: Icon, className }: { icon: any, className: string }) => (
@@ -69,7 +63,22 @@ export default function ServicesSection() {
     return (
       <section ref={elementRef} id="services" className="py-24 sm:py-32 bg-muted/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 md:px-6">
-          <SectionSkeleton title description cards={6} />
+          <div className="space-y-6">
+            <div className="h-12 w-3/4 mx-auto bg-muted animate-pulse rounded-md" />
+            <div className="space-y-2">
+              <div className="h-4 w-full bg-muted animate-pulse rounded-md" />
+              <div className="h-4 w-5/6 bg-muted animate-pulse rounded-md" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="space-y-3">
+                  <div className="h-48 w-full bg-muted animate-pulse rounded-md" />
+                  <div className="h-4 w-3/4 bg-muted animate-pulse rounded-md" />
+                  <div className="h-4 w-1/2 bg-muted animate-pulse rounded-md" />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     );

@@ -1,7 +1,7 @@
 # SEO Implementation Validation Guide
 
 ## Overview
-This document provides comprehensive testing and validation steps for the SEO optimization implementation on the KODEGAS Vision website.
+This document provides comprehensive testing and validation steps for the SEO optimization implementation on the KODEGAS website.
 
 ## Pre-deployment Checklist
 
@@ -116,7 +116,7 @@ gtag('config', 'GA_MEASUREMENT_ID', {
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "KODEGAS Vision",
+  "name": "KODEGAS",
   "url": "https://kodegas.com",
   "logo": "https://kodegas.com/images/logo.png"
 }

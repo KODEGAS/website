@@ -11,10 +11,10 @@ export default function Footer() {
             <Logo />
             <p className="max-w-xs">Leading AI, ML, IoT, and software development company in Sri Lanka. Expert technology solutions for digital transformation.</p>
             <div className="text-sm space-y-1">
-              <p className="font-medium">KODEGAS Vision</p>
+              <p className="font-medium">KODEGAS</p>
               <p>University of Kelaniya, Kelaniya 11600</p>
               <p>Western Province, Sri Lanka</p>
-              <p>Phone: +94 72 667 7555</p>
+              <p>Phone: +94 72 667 7555 | +94 71 721 8184</p>
               <p>Email: kavindusachinthe@outlook.com</p>
             </div>
           </div>
@@ -33,20 +33,20 @@ export default function Footer() {
             <Link href="#contact" className="hover:text-foreground">Contact</Link>
             <Link href="#contact" className="hover:text-foreground">Get Quote</Link>
             <div className="flex gap-4 mt-4">
-              <Link href="https://twitter.com/kodegas" aria-label="Follow KODEGAS Vision on Twitter" target="_blank" rel="noopener noreferrer">
+              <Link href="https://twitter.com/kodegas" aria-label="Follow KODEGAS on Twitter" target="_blank" rel="noopener noreferrer">
                 <Twitter className="h-6 w-6 hover:text-foreground" />
               </Link>
-              <Link href="https://linkedin.com/company/kodegas" aria-label="Connect with KODEGAS Vision on LinkedIn" target="_blank" rel="noopener noreferrer">
+              <Link href="https://linkedin.com/company/kodegas" aria-label="Connect with KODEGAS on LinkedIn" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="h-6 w-6 hover:text-foreground" />
               </Link>
-              <Link href="https://github.com/kodegas" aria-label="View KODEGAS Vision projects on GitHub" target="_blank" rel="noopener noreferrer">
+              <Link href="https://github.com/kodegas" aria-label="View KODEGAS projects on GitHub" target="_blank" rel="noopener noreferrer">
                 <Github className="h-6 w-6 hover:text-foreground" />
               </Link>
             </div>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t text-center text-sm space-y-2">
-          <p>© {new Date().getFullYear()} KODEGAS Vision. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} KODEGAS. All rights reserved.</p>
           <p className="text-xs">AI Development | ML Solutions | IoT Systems | Web & Mobile Apps | Sri Lanka</p>
         </div>
       </div>

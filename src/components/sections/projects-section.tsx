@@ -69,7 +69,7 @@ export default function ProjectsSection() {
                     <div className="overflow-hidden">
                       <Image
                         src={project.image}
-                        alt={`${project.title} - AI-powered ${project.category} application developed by KODEGAS Vision`}
+                        alt={`${project.title} - AI-powered ${project.category} application developed by KODEGAS`}
                         width={600}
                         height={400}
                         className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
@@ -91,7 +91,7 @@ export default function ProjectsSection() {
                 <DialogHeader>
                   <Image
                     src={project.image}
-                    alt={`${project.title} - Detailed view of AI-powered agricultural technology solution by KODEGAS Vision`}
+                    alt={`${project.title} - Detailed view of AI-powered agricultural technology solution by KODEGAS`}
                     width={600}
                     height={400}
                     className="w-full h-auto object-cover rounded-t-lg"

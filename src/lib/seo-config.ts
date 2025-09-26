@@ -18,8 +18,8 @@ export interface SEOConfig {
 }
 
 export const siteConfig: SEOConfig = {
-  title: 'KODEGAS Vision - AI, ML, IoT & Software Development Company',
-  description: 'KODEGAS Vision specializes in Artificial Intelligence, Machine Learning, IoT solutions, Web Applications, and Mobile App development. Expert tech solutions in Sri Lanka.',
+  title: 'KODEGAS - AI, ML, IoT & Software Development Company',
+  description: 'KODEGAS specializes in Artificial Intelligence, Machine Learning, IoT solutions, Web Applications, and Mobile App development. Expert tech solutions in Sri Lanka.',
   keywords: [
     'AI development',
     'machine learning services',
@@ -34,9 +34,9 @@ export const siteConfig: SEOConfig = {
     'custom software solutions',
     'digital transformation'
   ],
-  author: 'KODEGAS Vision',
+  author: 'KODEGAS',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://kodegas.com',
-  siteName: 'KODEGAS Vision',
+  siteName: 'KODEGAS',
   twitterHandle: '@kodegas',
   locale: 'en_US',
   type: 'website',
@@ -134,7 +134,7 @@ export const jsonLdOrganization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${siteConfig.siteUrl}/#organization`,
-  name: 'KODEGAS Vision',
+  name: 'KODEGAS',
   alternateName: 'KODEGAS',
   url: siteConfig.siteUrl,
   logo: `${siteConfig.siteUrl}/images/logo.png`,
@@ -171,7 +171,7 @@ export const jsonLdLocalBusiness = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': `${siteConfig.siteUrl}/#localbusiness`,
-  name: 'KODEGAS Vision',
+  name: 'KODEGAS',
   description: 'Professional software development and AI consulting services in Sri Lanka.',
   url: siteConfig.siteUrl,
   telephone: '+94-XX-XXXXXXX',

@@ -8,7 +8,7 @@ export const aiDevelopmentService = {
   description: 'Custom artificial intelligence solutions including machine learning models, neural networks, and AI-powered applications.',
   provider: {
     '@type': 'Organization',
-    name: 'KODEGAS Vision',
+    name: 'KODEGAS',
     url: siteConfig.siteUrl,
   },
   serviceType: 'Artificial Intelligence Development',
@@ -63,7 +63,7 @@ export const mlDevelopmentService = {
   description: 'End-to-end machine learning solutions from data preprocessing to model deployment and monitoring.',
   provider: {
     '@type': 'Organization',
-    name: 'KODEGAS Vision',
+    name: 'KODEGAS',
     url: siteConfig.siteUrl,
   },
   serviceType: 'Machine Learning Development',
@@ -88,7 +88,7 @@ export const iotDevelopmentService = {
   description: 'Internet of Things solutions including device connectivity, data collection, and smart automation systems.',
   provider: {
     '@type': 'Organization',
-    name: 'KODEGAS Vision',
+    name: 'KODEGAS',
     url: siteConfig.siteUrl,
   },
   serviceType: 'Internet of Things Development',
@@ -113,7 +113,7 @@ export const webDevelopmentService = {
   description: 'Custom web applications, e-commerce platforms, and responsive websites using modern technologies.',
   provider: {
     '@type': 'Organization',
-    name: 'KODEGAS Vision',
+    name: 'KODEGAS',
     url: siteConfig.siteUrl,
   },
   serviceType: 'Web Development',
@@ -168,7 +168,7 @@ export const mobileDevelopmentService = {
   description: 'Native and cross-platform mobile applications for iOS and Android platforms.',
   provider: {
     '@type': 'Organization',
-    name: 'KODEGAS Vision',
+    name: 'KODEGAS',
     url: siteConfig.siteUrl,
   },
   serviceType: 'Mobile App Development',

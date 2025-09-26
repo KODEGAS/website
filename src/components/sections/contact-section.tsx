@@ -57,7 +57,7 @@ export default function ContactSection() {
           transition={{ duration: 0.5 }}
           className="text-center space-y-4 mb-16"
         >
-          <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">Contact KODEGAS Vision</h2>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">Contact KODEGAS</h2>
           <p className="max-w-3xl mx-auto text-lg text-muted-foreground">Ready to transform your business with AI, ML, or custom software solutions? Get in touch with our expert development team in Sri Lanka for a free consultation.</p>
         </motion.div>
         
@@ -75,7 +75,7 @@ export default function ContactSection() {
                 <div className="flex items-start gap-4">
                   <MapPin className="w-6 h-6 text-primary mt-1"/>
                   <div>
-                    <p className="font-medium">KODEGAS Vision</p>
+                    <p className="font-medium">KODEGAS</p>
                     <p>Faculty of Science, University of Kelaniya</p>
                     <p>Kelaniya 11600, Western Province, Sri Lanka</p>
                   </div>

@@ -11,7 +11,7 @@ import { ResourceTracker } from '@/components/resource-tracker';
 import { ChunkLoadingHandler } from '@/components/chunk-loader';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'AI, ML, IoT & Software Development Company - KODEGAS Vision',
+  title: 'AI, ML, IoT & Software Development Company - KODEGAS',
   description: 'Leading technology company in Sri Lanka specializing in AI development, machine learning, IoT solutions, web applications, and mobile app development. Expert software consulting services.',
   keywords: ['AI development Sri Lanka', 'machine learning consulting', 'IoT solutions', 'software development company'],
 });

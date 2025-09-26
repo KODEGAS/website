@@ -14,7 +14,7 @@ export default function HeroSection() {
         transition={{ duration: 0.8 }}
       >
         <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter drop-shadow-lg">
-          KODEGAS Vision
+          KODEGAS
         </h1>
         <h2 className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/90 drop-shadow-md">
           Leading AI Development, Machine Learning & IoT Solutions Company in Sri Lanka
