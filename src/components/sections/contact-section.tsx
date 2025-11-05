@@ -76,20 +76,20 @@ export default function ContactSection() {
                   <MapPin className="w-6 h-6 text-primary mt-1"/>
                   <div>
                     <p className="font-medium">KODEGAS</p>
-                    <p>Faculty of Science, University of Kelaniya</p>
-                    <p>Kelaniya 11600, Western Province, Sri Lanka</p>
+                    <p>71 Sri Wickrama Mawatha,</p>
+                    <p> Wattala 11300, Sri Lanka</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <Mail className="w-6 h-6 text-primary"/>
                   <a href="mailto:kavindusachinthe@outlook.com" className="hover:text-primary transition-colors">
-                    kavindusachinthe@outlook.com
+                    contact@kodegas.com
                   </a>
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="w-6 h-6 text-primary"/>
                   <a href="tel:+94726677555" className="hover:text-primary transition-colors">
-                    +94 72 667 7555
+                    +94 72 667 7555 | +94 70 389 2138
                   </a>
                 </div>
               </div>
@@ -103,7 +103,7 @@ export default function ContactSection() {
             
             <div className="w-full h-64 md:flex-1 rounded-lg overflow-hidden">
                <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.203923444007!2d79.91300931530946!3d6.974513094958318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2570410795493%3A0x296763f00a5f6b7!2sFaculty%20of%20Science%2C%20University%20of%20Kelaniya!5e0!3m2!1sen!2slk!4v1755515595000!5m2!1sen!2slk"
+                src="https://maps.app.goo.gl/HME9vEznnpaPPb1c6?g_st=ipc"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
