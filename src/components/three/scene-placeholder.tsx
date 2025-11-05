@@ -32,11 +32,7 @@ export default function ScenePlaceholder() {
           <div className="absolute top-2 left-2 w-28 h-28 border-2 border-cyan-400/20 rounded-full animate-spin animation-reverse">
             <div className="absolute top-0 right-0 w-3 h-3 bg-cyan-400 rounded-full" />
           </div>
-          
-          {/* Loading text */}
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-            <div className="text-sm text-purple-300/60 animate-pulse">Loading 3D Scene...</div>
-          </div>
+
         </div>
       </div>
     </div>

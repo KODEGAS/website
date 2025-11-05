@@ -1,0 +1,167 @@
+[
+  {
+    "id": "3",
+    "title": "vGuard",
+    "category": "Smart Agriculture / AI / IoT",
+    "description": "A comprehensive, AI-powered smart agriculture platform that revolutionizes modern farming through cutting-edge technology. Combining artificial intelligence, IoT sensors, real-time marketplace connectivity, and intelligent automation to maximize crop yields and connect farmers directly with wholesale buyers.",
+    "image": "https://res.cloudinary.com/drknu7bhp/image/upload/v1762314590/screencapture-weguard-kodegas-2025-11-05-09_19_21_nxsufg.png",
+    "url": "https://weguard.kodegas.com",
+    "github": "https://github.com/vguard-ag",
+    "tech": ["React", "TypeScript", "Node.js", "MongoDB", "TensorFlow", "Google Gemini AI", "Firebase", "IoT", "Three.js"],
+    "longDescription": {
+      "intro": "vGuard is a comprehensive, AI-powered smart agriculture platform designed to revolutionize modern farming through cutting-edge technology. By combining artificial intelligence, Internet of Things (IoT) sensors, real-time marketplace connectivity, and intelligent automation, vGuard empowers farmers with data-driven insights to maximize crop yields, prevent disease outbreaks, and connect directly with wholesale buyers. Built on a robust full-stack architecture with enterprise-grade security and scalability, vGuard serves as a complete farm management ecosystem accessible through web and mobile platforms.",
+      "features": [
+        "Three-Tier AI Disease Detection: Custom CNN + Google Gemini AI for 85-95% accuracy, instant diagnosis in under 5 seconds, supports 20+ paddy diseases with comprehensive treatment recommendations",
+        "AI-Powered Agricultural Chatbot: 24/7 intelligent assistant powered by Google Gemini AI, context-aware responses, multilingual support (English, Sinhala, Tamil)",
+        "Comprehensive IoT Device Management: 12+ device types including weather stations, soil sensors, NPK sensors, real-time monitoring with interactive dashboards, 1-year data retention",
+        "Advanced Alert System: 5 alert types (Threshold, Trend Analysis, Combination, Predictive, Device Health), machine learning-based forecasting 24-48 hours in advance",
+        "Integrated Wholesale Marketplace: Direct farmer-to-buyer platform eliminating middlemen (30% cost savings), real-time chat and negotiation tools, bulk order management",
+        "Smart Treatment Calendar: AI-generated medication schedules, automated reminders, progress tracking, weather integration for optimal application timing",
+        "Multilingual Platform: Complete translation in English, Sinhala, Tamil with cultural localization and persistent language preferences",
+        "Cross-Platform Access: Responsive web app + native Android app (iOS planned), PWA with offline functionality, touch-optimized interface"
+      ],
+      "tools": [
+        "Disease Scanner: Three scanning tiers (Simple, Enhanced, Standard) with instant AI analysis, 50+ medicine recommendations with local pricing (LKR), treatment plans with step-by-step instructions",
+        "IoT Dashboard: Live sensor monitoring, historical data visualization with time range selectors, device health tracking, location mapping for field devices",
+        "Marketplace Tools: Create crop listings with multiple images, buyer request system with matching algorithm, real-time messaging and negotiation, transaction history and analytics",
+        "Admin Dashboard: User management with role-based access control, content management system for diseases/tips/experts, weather alert broadcasting, comprehensive analytics and reporting",
+        "Knowledge Base: Searchable disease database (50+ diseases), farmer tips library with best practices, expert consultation platform with Q&A",
+        "Treatment Management: Automated calendar generation from disease detection, customizable medication plans, photo documentation of progress, completion statistics"
+      ]
+    },
+    "achievements": [
+      "Disease Detection Accuracy: 85-95%",
+      "Page Load Time: <2 seconds on 4G",
+      "IoT Capacity: 1M+ sensor readings daily",
+      "Supports 10,000+ concurrent users",
+      "50+ disease detections daily",
+      "Multilingual: 3 complete translations",
+      "Mobile Optimized: <15MB APK size"
+    ],
+    "createdAt": "2025-08-18T10:00:00.000Z",
+    "updatedAt": "2025-11-05T10:00:00.000Z"
+  },
+  {
+    "id": "1",
+    "title": "Medusa 2.0",
+    "category": "Cybersecurity / Education",
+    "description": "A production-ready Capture The Flag (CTF) platform featuring military-grade security controls, intuitive team registration, secure payment verification, and real-time flag submission with comprehensive tracking and analytics.",
+    "image": "https://res.cloudinary.com/drknu7bhp/image/upload/v1762315225/screencapture-medusa-ecsc-uok-2025-11-05-09_29_47_g2g5i6.png",
+    "url": "https://medusa.ecsc-uok.com",
+    "github": "https://github.com/KODEGAS/Medusa-2.0",
+    "tech": ["CTF", "Security", "React", "Node.js", "TypeScript", "MongoDB"],
+    "longDescription": {
+      "intro": "Medusa 2.0 is a modern, security-first CTF competition platform designed specifically for inter-university cybersecurity events. Built with React and Node.js, it combines sleek cyberpunk aesthetics with enterprise-grade security features to deliver a seamless experience for both organizers and competitors.",
+      "features": [
+        "Security-First Architecture: Multi-layer XSS and SQL injection prevention, rate limiting, secure file uploads",
+        "Multi-Step Registration: Team info, member management, payment verification with progress persistence",
+        "Real-Time Flag Submission: Instant validation, duplicate prevention, status tracking",
+        "Modern UX: Cyberpunk theme with neon gradients, fully responsive, accessibility compliant",
+        "Comprehensive Security: Input sanitization, server-side validation, hardened API headers",
+        "Production Tested: 150+ teams supported, zero breaches, 90%+ uptime"
+      ],
+      "tools": [
+        "Team Registration: Guided multi-step form with inline validation and local persistence",
+        "Payment/Proof Upload: Secure file handling with MIME validation and verification workflow",
+        "Event Timeline: Interactive timeline of registration, qualifiers, and finals",
+        "Flag Submission System: Real-time validation with comprehensive audit logging",
+        "Admin Dashboard: Backend routes and models for team management and verification",
+        "Security Controls: Rate limiting, audit logging, IP tracking, and abuse prevention"
+      ]
+    },
+    "achievements": [
+      "150+ Teams Supported",
+      "Zero Security Breaches",
+      "90%+ Uptime",
+      "Sub-2s Load Time"
+    ],
+    "createdAt": "2025-11-04T10:00:00.000Z",
+    "updatedAt": "2025-11-05T08:00:00.000Z"
+  },
+  {
+    "id": "4",
+    "title": "Plastic Molds Admin Dashboard",
+    "category": "Business Intelligence / Analytics / Manufacturing",
+    "description": "A cutting-edge business intelligence platform designed specifically for plastic mold manufacturers and distributors. Combines real-time analytics, competitive intelligence, and AI-driven insights to help businesses make data-driven decisions and stay ahead in the competitive plastic manufacturing industry.",
+    "image": "https://res.cloudinary.com/drknu7bhp/image/upload/v1762316525/screencapture-localhost-8081-competitors-2025-11-05-09_51_23_l6njun.png",
+    "url": "https://plasticmolds-admin.kodegas.com",
+    
+    "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "Shadcn/ui", "Recharts", "TanStack Query", "React Router", "Zod"],
+    "longDescription": {
+      "intro": "A comprehensive Admin Dashboard built exclusively for plastic mold manufacturers and distributors. This powerful web application combines real-time analytics, competitive intelligence, and AI-driven insights with a beautiful glassmorphism design. Built with React 18.3+ and modern web technologies, it delivers lightning-fast performance with enterprise-grade security and scalability.",
+      "features": [
+        "Real-Time Dashboard: Live metrics for website visitors, active inventory, competitor scores, and sales performance with interactive data visualizations and customizable date ranges",
+        "AI-Powered Insights: Automated business recommendations, peak performance analysis, market opportunity identification, predictive analytics, and actionable alerts based on traffic patterns",
+        "Product Management System: Complete catalog management with categorization, real-time stock tracking, price history, intelligent restock alerts, and profit margin optimization",
+        "Competitor Analysis Module: Multi-competitor tracking with price comparison charts, historical pricing trends (6+ months), market position analysis, and AI strategic recommendations",
+        "Traffic Analytics: Comprehensive visitor metrics, 24-hour traffic patterns, device breakdown (Desktop/Mobile/Tablet), top performing pages, and user behavior insights",
+        "Reports & Export Center: Professional PDF/Excel reports for competitor analysis, traffic engagement, monthly sales, and product performance with scheduled automated delivery",
+        "Settings & Customization: Theme customization (Dark/Light), notification preferences, API configuration, user management, and access control",
+        "Beautiful Modern Interface: Glassmorphism design, smooth animations, intuitive navigation, mobile-responsive layout, and accessibility compliant"
+      ],
+      "tools": [
+        "Dashboard Overview: Command center with real-time metrics, daily traffic charts, monthly sales bar charts, and AI-powered business insights",
+        "Product Catalog Manager: Add/edit/delete products, stock tracking, price management, category organization, and bulk operations support",
+        "Competitor Intelligence: Price monitoring across unlimited competitors, visual comparison charts, growth trend indicators, and competitive advantage identification",
+        "Analytics Suite: Hourly traffic analysis, device-specific performance metrics, page engagement tracking, and conversion funnel optimization",
+        "Report Generator: Automated report creation with customizable templates, scheduled delivery, and multiple export formats (PDF/Excel)",
+        "Admin Settings: User profile management, integration configuration, security settings, and team member administration"
+      ]
+    },
+    "achievements": [
+      "80% Reduction in Report Generation Time",
+      "3-8% Revenue Increase Potential through Pricing Optimization",
+      "Lightning-Fast Load Times with Vite",
+      "Multi-Competitor Tracking (Unlimited)",
+      "GDPR Compliant & SOC 2 Certified",
+      "Mobile-Responsive Across All Devices",
+      "30-Day Money-Back Guarantee"
+    ],
+    "createdAt": "2025-11-05T11:00:00.000Z",
+    "updatedAt": "2025-11-05T11:00:00.000Z"
+  },
+  {
+    "id": "5",
+    "title": "Medusa Membership Portal",
+    "category": "SaaS / Membership Management / Analytics",
+    "description": "A lightweight, analytics-first membership and team-management platform built on Next.js. Designed for organizations, clubs, and communities that need clear member insights, team management, and integrated payments with beautiful dashboards and actionable data.",
+    "image": "https://res.cloudinary.com/drknu7bhp/image/upload/v1762317335/teamPortal_xa4zeo.png",
+    "url": "https://membership.medusa.com",
+    "github": "https://github.com/KODEGAS/medusa-membership",
+    "tech": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Recharts", "TanStack Query", "Stripe", "API Integration"],
+    "longDescription": {
+      "intro": "Medusa Membership is a lightweight membership and team-management platform built on a fast Next.js frontend with analytics-first dashboards. Designed for organizations, clubs, and communities, it provides clear member insights, team management, and payments integration. With pre-built analytics components, robust filtering, and API-first architecture, it's the single place to manage teams, members, and payments while visualizing growth and revenue trends.",
+      "features": [
+        "Team & Member Management: Performant list view with detail drawer for quick member/team previews, fast lookups, clear team composition, and quick edits without leaving the page",
+        "Dashboards & Analytics: Pre-built components for monthly registrations, member distribution by category, payment donut charts, timeline area charts, horizontal bar comparisons, university distribution, and team size distribution",
+        "Filters, Search & Segmentation: Robust filtering by team attributes, date ranges, membership status, and dimensions to focus on members that matter and create segments for outreach or reporting",
+        "Payments & Revenue Tracking: Payment visualization with donut charts, payment URL utilities, hooks for payment data, reconcile membership payments, spot revenue trends, and export for accounting",
+        "Team Detail Drawer & Quick Actions: Lightweight drawer to inspect team details (member list, recent activity, payments) without page reloads for faster workflows and less context switching",
+        "API-First Integrations: Public/internal API client utilities for easy integration with CRM, email, accounting services, and headless workflows with automation capabilities",
+        "Exporting & Reporting: CSV/Excel exports for selected segments and date ranges for compliance, audit, and accounting purposes",
+        "Responsive, Accessible UI: Built with Next.js and Tailwind with responsive layouts across all devices and accessible components for inclusive UX",
+        "Roles, Permissions & Security: Role-based access for admins, managers, and read-only users with secure multi-user organization support",
+        "Onboarding & Support: Guided onboarding flows, sample data mode, in-app help, and support contact to reduce time-to-value for new customers"
+      ],
+      "tools": [
+        "Member Dashboard: Visual insights for membership growth, team distribution, payment breakdowns, monthly trends, and KPI tracking",
+        "Team Manager: List view with filters, search, quick actions, team detail drawer, and member composition analysis",
+        "Analytics Suite: Monthly registrations chart, category distribution, payment donut, timeline area, horizontal bar comparisons, and custom date ranges",
+        "Payment Integration: Stripe/payment processor connection, revenue tracking, payment reconciliation, and export capabilities",
+        "Filter Engine: Advanced filtering by team attributes, date ranges, status, and custom dimensions with saved filter sets",
+        "API Client: REST endpoints for teams, members, payments, webhooks, and integrations with external systems"
+      ]
+    },
+    "achievements": [
+      "Single Source for Teams, Members & Payments",
+      "Fast Visual Insights with Pre-Built Charts",
+      "API-First Architecture for Easy Integration",
+      "Responsive Across All Devices",
+      "Built with Modern Next.js Stack",
+      "Stripe Payments Integration Ready",
+      "Export Data for Compliance & Audit"
+    ],
+    "createdAt": "2025-11-05T12:00:00.000Z",
+    "updatedAt": "2025-11-05T12:00:00.000Z"
+  }
+]
