@@ -84,7 +84,7 @@
     "category": "Business Intelligence / Analytics / Manufacturing",
     "description": "A cutting-edge business intelligence platform designed specifically for plastic mold manufacturers and distributors. Combines real-time analytics, competitive intelligence, and AI-driven insights to help businesses make data-driven decisions and stay ahead in the competitive plastic manufacturing industry.",
     "image": "https://res.cloudinary.com/drknu7bhp/image/upload/v1762316525/screencapture-localhost-8081-competitors-2025-11-05-09_51_23_l6njun.png",
-    "url": "https://plasticmolds-admin.kodegas.com",
+    "url": "https://admin-dahsboard-plastic-molds.vercel.app/",
     
     "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "Shadcn/ui", "Recharts", "TanStack Query", "React Router", "Zod"],
     "longDescription": {
