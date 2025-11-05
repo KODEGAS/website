@@ -102,8 +102,10 @@ export default function ContactSection() {
             </div>
             
             <div className="w-full h-64 md:flex-1 rounded-lg overflow-hidden">
+               {/* Embedded Google Maps iframe (embed-friendly) - fallback link provided below for mobile/app */}
                <iframe
-                src="https://maps.app.goo.gl/HME9vEznnpaPPb1c6?g_st=ipc"
+                title="KODEGAS location"
+                src="https://maps.google.com/maps?q=71%20Sri%20Wickrama%20Mawatha%20Wattala%2011300%20Sri%20Lanka&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -111,6 +113,17 @@ export default function ContactSection() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
+
+              <div className="mt-2 text-sm text-muted-foreground px-2">
+                <a
+                  href="https://maps.app.goo.gl/HME9vEznnpaPPb1c6?g_st=ipc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-primary"
+                >
+                  Open in Google Maps
+                </a>
+              </div>
             </div>
           </motion.div>
           <motion.div
