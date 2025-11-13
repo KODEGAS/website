@@ -103,7 +103,7 @@ export default function ContactSection() {
             
             <div className="w-full h-64 md:flex-1 rounded-lg overflow-hidden">
                {/* Embedded Google Maps iframe (embed-friendly) - fallback link provided below for mobile/app */}
-               <iframe
+                <iframe
                 title="KODEGAS location"
                 src="https://maps.google.com/maps?q=71%20Sri%20Wickrama%20Mawatha%20Wattala%2011300%20Sri%20Lanka&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"

@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/button';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 type Project = {
   id: string;
@@ -27,6 +28,9 @@ type Project = {
 export default function ProjectsSection() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const [scrollContainer, setScrollContainer] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     async function fetchProjects() {
@@ -44,6 +48,36 @@ export default function ProjectsSection() {
     }
     fetchProjects();
   }, []);
+
+  const checkScroll = () => {
+    if (scrollContainer) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  useEffect(() => {
+    if (scrollContainer) {
+      checkScroll();
+      scrollContainer.addEventListener('scroll', checkScroll);
+      return () => scrollContainer.removeEventListener('scroll', checkScroll);
+    }
+  }, [scrollContainer, projects]);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainer) {
+      const scrollAmount = 420; // Card width + gap
+      const newScrollLeft = direction === 'left' 
+        ? scrollContainer.scrollLeft - scrollAmount 
+        : scrollContainer.scrollLeft + scrollAmount;
+      
+      scrollContainer.scrollTo({
+        left: newScrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const cardVariants = {
     hidden: { opacity: 0, scale: 0.95 },
@@ -80,9 +114,34 @@ export default function ProjectsSection() {
         {projects.length === 0 ? (
           <div className="text-center text-muted-foreground">No projects available.</div>
         ) : (
-          <div className="relative">
+          <div className="relative group/slider">
+            {/* Left Scroll Button */}
+            {canScrollLeft && (
+              <button
+                onClick={() => scroll('left')}
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border border-border rounded-full p-2 shadow-lg opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300"
+                aria-label="Scroll left"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+            )}
+
+            {/* Right Scroll Button */}
+            {canScrollRight && (
+              <button
+                onClick={() => scroll('right')}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border border-border rounded-full p-2 shadow-lg opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300"
+                aria-label="Scroll right"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            )}
+
             {/* Horizontal scrollable container */}
-            <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+            <div 
+              ref={setScrollContainer}
+              className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
+            >
               {projects.map((project, index) => (
                 <Dialog key={project.id}>
                   <DialogTrigger asChild>

@@ -6,6 +6,7 @@ import HeroSection from '@/components/sections/hero-section';
 import AboutSection from '@/components/sections/about-section';
 import ServicesSection from '@/components/sections/services-section';
 import ProjectsSection from '@/components/sections/projects-section';
+import WhyUsSection from '@/components/sections/why-us-section';
 import ContactSection from '@/components/sections/contact-section';
 import ScenePlaceholder from '@/components/three/scene-placeholder';
 
@@ -26,6 +27,7 @@ export default function HomeClient() {
         <HeroSection />
         <AboutSection />
         <ServicesSection />
+        <WhyUsSection />
         <ProjectsSection />
         <ContactSection />
       </main>

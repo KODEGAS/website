@@ -48,7 +48,7 @@ export default function AboutSection() {
             </p>
             <div className="grid grid-cols-2 gap-4 mt-6">
               <div className="text-center p-4 bg-muted/50 rounded-lg">
-                <h3 className="font-bold text-2xl text-primary">50+</h3>
+                <h3 className="font-bold text-2xl text-primary">25+</h3>
                 <p className="text-sm text-muted-foreground">Successful Projects</p>
               </div>
               <div className="text-center p-4 bg-muted/50 rounded-lg">

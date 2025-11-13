@@ -22,7 +22,7 @@ export default function HeroSection() {
         <p className="mt-2 max-w-3xl mx-auto text-base md:text-lg text-white/80 drop-shadow-md">
           Expert software development services including artificial intelligence, machine learning models, IoT systems, web applications, and mobile app development. Transform your business with cutting-edge technology solutions.
         </p>
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-8 flex flex-row items-center justify-center gap-4">
           <Button size="lg" asChild>
             <a href="#projects" aria-label="View our AI and software development projects">Our Work</a>
           </Button>
